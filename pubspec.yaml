@@ -1,0 +1,31 @@
+name: dplasma
+description: P2P is the new &quot;Plasma to Patients&quot; !! Come and get to know our DDD (Decentralized Data Donors) model at the DPKI that we BUIDL. Okok...Decentralized Public Key Infrastructure...and yes... BUIDL is the new HODL. 
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^0.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+  - images/logo-main.png
+
+  fonts:
+  - family: Schyler
+
+
