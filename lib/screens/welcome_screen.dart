@@ -51,12 +51,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                     child: Hero(
                       tag: 'logo',
                       child: Container (
-                          child: Image.asset('images/logo-transparent.png'),
+                          child: Image.asset('assets/images/virus.png'),
                           height: 400),
                     ),
                   ),
-                  Text ('Count on Me ', style: TextStyle (fontSize: 60.0, color: Color (0xFFFFFFFF)),),
-                  Text('Platelets to Patients', style: TextStyle (fontSize: 20, color: Colors.white, letterSpacing: 2.5),),
+                  Text ('dPlasma', style: TextStyle (fontSize: 60.0, color:
+                  Color (0xFFFFFFFF)),),
+                  Text('Passive Immunity to Patients', style: TextStyle
+                    (fontSize: 20,
+                      color: Colors.white, letterSpacing: 2.5),),
 //                  RoundedButton(
 //                    titleOfButton: 'I\'m a Patient | Family Member',
 //                    colorOfButton: Colors.yellow,
