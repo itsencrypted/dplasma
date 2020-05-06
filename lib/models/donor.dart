@@ -1,15 +1,5 @@
 import 'package:intl/intl.dart';
-
-enum BloodTypes {
-  AMinus,
-  APlus,
-  BPlus,
-  BMinus,
-  ABPlus,
-  ABMinus,
-  OPlus,
-  OMinus
-}
+import 'blood_types.dart';
 
 //DateFormat.yMd('en_US').parse('1/10/2012');
 //print(new DateTime.now().millisecondsSinceEpoch);
