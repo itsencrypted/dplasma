@@ -127,10 +127,10 @@ class _AnimationsExamplesState extends State<AnimationsExamples>
                                   print("Tap Event");
                                 },
                                 text: [
-                                  "Discipline is the best tool",
-                                  "Design first, then code",
-                                  "Do not patch bugs out, rewrite them",
-                                  "Do not test bugs out, design them out",
+                                  "dPlasma",
+                                  "Clinical trials of convalescent Plasma",
+                                  "Consensys Health - Stop Covid19",
+                                  "Data is the medicine we need",
                                 ],
                                 textStyle: GoogleFonts.courierPrime(
                                   textStyle: TextStyle(
