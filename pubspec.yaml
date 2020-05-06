@@ -12,6 +12,7 @@ dependencies:
   intl: ^0.16.1
   geolocator: ^5.3.1
   web3dart: ^1.2.3
+  flutter_map: ^0.7.0+1
 
 
   cupertino_icons: ^0.1.2
