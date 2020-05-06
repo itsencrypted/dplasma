@@ -4,7 +4,7 @@ import 'package:web3dart/web3dart.dart';
 
 
 class BloodBank {
-Ethereumaddress bloodbankAddress;
+//Ethereumaddress bloodbankAddress;
 String city;
 //TODO: encher com as variaveis daqui: https://www.oneblood.org/
 }

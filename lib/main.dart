@@ -1,3 +1,4 @@
+import 'package:dplasma/components/animations.dart';
 import 'package:dplasma/screens/action_bloodbank_screen.dart';
 import 'package:dplasma/screens/action_doctor_screen.dart';
 import 'package:dplasma/screens/action_donor_screen.dart';
@@ -25,7 +26,9 @@ class DPlasma extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp (
-      initialRoute: WelcomeScreen.id,
+//      initialRoute: WelcomeScreen.id,
+    initialRoute: AnimationsExamples.id,
+
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         DonorSignUpScreen.id: (context) => DonorSignUpScreen(),
@@ -46,6 +49,7 @@ class DPlasma extends StatelessWidget {
         BloodBankActionScreen.id: (context) => BloodBankActionScreen(),
         DoctorActionScreen.id: (context) => DoctorActionScreen(),
         HematologistActionScreen.id: (context) => HematologistActionScreen(),
+        AnimationsExamples.id: (context) => AnimationsExamples(),
       },
     );
   }

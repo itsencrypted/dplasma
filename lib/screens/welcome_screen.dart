@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String id = 'welcome_screen';
@@ -19,7 +20,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
     super.initState();
 
     controller = AnimationController(
-      duration: Duration(seconds: 1),
+      duration: Duration(seconds: 15),
       vsync: this,
     );
     animation = ColorTween(begin: kLightBlueish, end: kLightGreen).animate
@@ -60,6 +61,30 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                   Text('Passive Immunity to Patients', style: TextStyle
                     (fontSize: 20,
                       color: Colors.white, letterSpacing: 2.5),),
+            SizedBox(
+              width: 250.0,
+              child: ColorizeAnimatedTextKit(
+                  onTap: () {
+                    print("Tap Event");
+                  },
+                  text: [
+                    "dPlasma",
+                  ],
+                  textStyle: TextStyle(
+                      fontSize: 50.0,
+                      fontFamily: "Horizon",
+                    fontWeight: FontWeight.bold,
+                  ),
+                  colors: [
+                    Colors.green,
+                    Colors.blue,
+                    Colors.yellow,
+                    Colors.orange,
+                  ],
+                  textAlign: TextAlign.start,
+                  alignment: AlignmentDirectional.center // or Alignment.topLeft
+              ),
+            )
 //                  RoundedButton(
 //                    titleOfButton: 'I\'m a Patient | Family Member',
 //                    colorOfButton: Colors.yellow,
