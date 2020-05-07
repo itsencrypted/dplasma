@@ -56,7 +56,7 @@ class _AnimationsExamplesState extends State<AnimationsExamples>
                             child: TextLiquidFill(
                               text: 'Donating',
                               waveColor: Colors.amber,
-                              boxBackgroundColor: Colors.black,
+                              boxBackgroundColor: Colors.grey,
                               textStyle: TextStyle(
                                 fontSize: 80.0,
                                 fontWeight: FontWeight.bold,
