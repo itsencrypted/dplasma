@@ -5,10 +5,13 @@
          In most cases you can leave this as-is, but you if you want to provide
          additional functionality it is fine to subclass or reimplement
          FlutterApplication and put your custom class here. -->
+         <uses-permission android:name="android.permission.INTERNET"/>
+         
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="dplasma"
         android:icon="@mipmap/ic_launcher">
+         <meta-data android:name="com.mapbox.token" android:value="pk.eyJ1IjoiYnJ1bm9lbGVvZG9ybyIsImEiOiJjazl2eWdqN2owNGNrM2dtcmF0Mm81bjE4In0.j-KLSQDftcb_W16RxaaG1Q" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
