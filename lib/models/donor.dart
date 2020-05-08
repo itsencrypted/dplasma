@@ -45,4 +45,17 @@ class Donor{
 }
 
 
+//void donorSignup(
+// string memory city,
+//BloodTypes bloodType,
+//    uint256 birthDate,
+//uint256 bodyWeight,
+//    uint256 lastDonation,
+//bool serologicalTestIsPositive,
+//    uint256 dateOfFirstSymptom,
+//uint256 dateOfLastSymptom,
+//    bool pcrResultIsNegative,
+//bool isFemale,
+//    bool hadAnyPregnanciesorMiscarriagesMoreThanTwiceIsTrue,
+//uint256 lastTattoo) {}
 
