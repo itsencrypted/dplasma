@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HematologistLoginScreen extends StatefulWidget {
   static const String id = 'hematologistLogin_screen';
@@ -8,8 +9,27 @@ class HematologistLoginScreen extends StatefulWidget {
 }
 
 class _HematologistLoginScreenState extends State<HematologistLoginScreen> {
+  SharedPreferences prefs;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, () async {
+        prefs = await SharedPreferences.getInstance();
+        if(prefs.getString('privateKey') != null) {
+
+        } else {
+          
+        }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Container(
+
+      ),
+    );
   }
 }
