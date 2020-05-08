@@ -8,6 +8,9 @@ import 'package:web3dart/web3dart.dart';
 import 'package:http/http.dart' as http;
 import 'package:hex/hex.dart';
 
+// TODO: 
+// constants.dart -> Lembrar de colocar 
+
 class EthereumUtils {
   static String abiPath = "assets/abi.json";
   static String contractAddress = "0xD1CC1D57695E394cC48c8Dba4891160E66bAcB85";

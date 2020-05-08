@@ -1,4 +1,5 @@
 import 'package:dplasma/screens/login_donor_screen.dart';
+import 'package:dplasma/screens/registration_hematologist_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
@@ -105,19 +106,25 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   SizedBox(
                     height: 5,
                   ),
-                  MaterialButton(onPressed: () {
-                    switch (selectedItem) {
-                      case "Donor":
-                        Navigator.pushReplacementNamed(
-                            context, DonorLoginScreen.id);
-                        break;
-                      case "Patient/Family Member":
-                        break;
-                      default:
-                        break;
-                    }
-                    
-                  },child: Text('LOGIN'),)
+                  MaterialButton(
+                    onPressed: () {
+                      switch (selectedItem) {
+                        case "Donor":
+                          Navigator.pushReplacementNamed(
+                              context, DonorLoginScreen.id);
+                          break;
+                        case "Hematologist":
+                          Navigator.pushReplacementNamed(
+                              context, HematologistSignUpScreen.id);
+                          break;
+                        case "Patient/Family Member":
+                          break;
+                        default:
+                          break;
+                      }
+                    },
+                    child: Text('LOGIN'),
+                  )
 //                  RoundedButton(
 //                    titleOfButton: 'I\'m a Patient | Family Member',
 //                    colorOfButton: Colors.yellow,

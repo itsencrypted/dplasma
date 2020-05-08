@@ -12,14 +12,14 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:geolocation/geolocation.dart' as geolocation;
 
-class BloodBanksScreen extends StatefulWidget {
-  static const String id = 'blood_banks_screen';
+class MapBloodBanksScreen extends StatefulWidget {
+  static const String id = 'map_blood_banks_screen';
 
   @override
-  _BloodBanksScreenState createState() => _BloodBanksScreenState();
+  _MapBloodBanksScreenState createState() => _MapBloodBanksScreenState();
 }
 
-class _BloodBanksScreenState extends State<BloodBanksScreen> {
+class _MapBloodBanksScreenState extends State<MapBloodBanksScreen> {
   // LatLng _center = LatLng(40.762681, -73.832611);
   bool isLoading = true;
   List<BloodBank> bloodBanks = List();
