@@ -69,12 +69,14 @@ class _BloodBanksScreenState extends State<BloodBanksScreen> {
 
       bloodBanks.add(bloodBank);
       BitmapDescriptor icon = await BitmapDescriptor.fromAssetImage(
-          ImageConfiguration(size: Size(52, 52)),
-          'assets/images/marker_blood.png');
+          ImageConfiguration(), 'assets/images/marker_blood.png');
       markers.add(Marker(
           markerId: MarkerId(bloodBank.geometry.toString()),
           icon: icon,
-          position: bloodBank.geometry));
+          position: bloodBank.geometry,
+          infoWindow: InfoWindow(
+            title: bloodBank.name
+          )));
       i++;
     }
 
@@ -149,8 +151,10 @@ class _BloodBanksScreenState extends State<BloodBanksScreen> {
                   BloodBank e = bloodBanks[page];
                   final GoogleMapController controller =
                       await _controller.future;
-                  controller.animateCamera(CameraUpdate.newCameraPosition(
-                      CameraPosition(target: e.geometry, zoom: 14)),);
+                  controller.animateCamera(
+                    CameraUpdate.newCameraPosition(
+                        CameraPosition(target: e.geometry, zoom: 14)),
+                  );
                 },
                 controller: PageController(
                   viewportFraction: 0.6,
