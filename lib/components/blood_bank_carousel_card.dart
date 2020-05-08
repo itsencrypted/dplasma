@@ -20,7 +20,7 @@ class BloodBankCard extends StatelessWidget {
             Positioned(
               bottom: 15.0,
               child: Container(
-                height: 165.0,
+                height: 169.0,
                 width: 200.0,
                 decoration: BoxDecoration(
                     color: Colors.white,

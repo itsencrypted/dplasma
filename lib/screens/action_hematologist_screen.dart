@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+//import dos componentes/hematologist.dart
 
 class HematologistActionScreen extends StatefulWidget {
   static const String id = 'hematologistAction_screen';
@@ -13,3 +14,6 @@ class _HematologistActionScreenState extends State<HematologistActionScreen> {
     return Container();
   }
 }
+
+
+//getPlasma(){}

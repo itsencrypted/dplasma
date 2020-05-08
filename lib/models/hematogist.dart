@@ -5,3 +5,7 @@ class hematologistDoctor {
   String city;
 //TODO: encher com as variaveis daqui: https://www.oneblood.org/
 }
+
+
+// void requestPlasma(){}
+//void  acceptBloodComponents(){}

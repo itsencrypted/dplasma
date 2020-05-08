@@ -28,7 +28,7 @@ class DPlasma extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp (
       initialRoute: WelcomeScreen.id,
-      // initialRoute: MapBloodBanksScreen.id,
+//       initialRoute: MapBloodBanksScreen.id,
       // initialRoute: HematologistSignUpScreen.id,
       debugShowCheckedModeBanner: false,
       routes: {

@@ -1,3 +1,4 @@
+import 'package:dplasma/models/hematogist.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart';
 import 'package:web3dart/crypto.dart';
@@ -22,3 +23,17 @@ class BloodBank {
 
 //TODO: 1. Stopped over here. Need to get more blood banks geolocations in NY
 // New York Blood Center: @40.7494885,-73.9895941,
+
+
+//receive plasma requests (from hematologistDoctor) >> getPlasma(){} >>> bate
+// no banco de sangue
+
+// Banco de Sangue  >>> devolve Bolsa de Plasma para NYU Hospital (A)
+
+// devolve bolsa de plasma para Mt Sinai Hospital (B)
+
+// Banco de sangue fica com sangue A+ em estoque >>> ninguem precisou
+
+
+
+
