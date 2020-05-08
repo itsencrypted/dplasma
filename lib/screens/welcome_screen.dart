@@ -1,5 +1,9 @@
 import 'package:dplasma/screens/login_donor_screen.dart';
+import 'package:dplasma/screens/registration_bloodbank_screen.dart';
+import 'package:dplasma/screens/registration_donor_screen.dart';
 import 'package:dplasma/screens/registration_hematologist_screen.dart';
+import 'package:dplasma/screens/registration_hospital_screen.dart';
+import 'package:dplasma/screens/registration_patient_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
@@ -160,18 +164,25 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     color: Colors.black,
                     onPressed: () {
                       switch (selectedItem) {
-                        case "Donor":
-                          Navigator.pushReplacementNamed(
-                              context, DonorLoginScreen.id);
-                          break;
+//                        case "Donor":
+//                          Navigator.pushReplacementNamed(
+//                              context, DonorSignUpScreen.id);
+//                          break;
                         case "Hematologist":
                           Navigator.pushReplacementNamed(
                               context, HematologistSignUpScreen.id);
                           break;
-                        case "Patient/Family Member":
-                          break;
-                        default:
-                          break;
+//                        case "Patient/Family Member":
+//                          Navigator.pushReplacementNamed(
+//                              context, PatientSignUpScreen.id);
+//                          break;
+//                        case "Blood Bank":
+//                          Navigator.pushReplacementNamed(
+//                              context, BloodBankSignUpScreen.id);
+//                          break;
+//                        case "Hospital":
+//                          Navigator.pushReplacementNamed(context, HospitalSignUpScreen.id);
+//                          break;
                       }
                     },
                     child: Padding(
@@ -179,25 +190,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                       child: Text('LOGIN', style: TextStyle(color: Colors.white),),
                     ),
                   )
-//                  RoundedButton(
-//                    titleOfButton: 'I\'m a Patient | Family Member',
-//                    colorOfButton: Colors.yellow,
-//                    onPressed: () {Navigator.pushNamed(context, LoginScreen.id);},),
-//                  RedRoundedButton(
-//                    titleOfButton: 'I\'m here to Donate',
-//                    onPressed: () {Navigator.pushNamed(context, LoginScreen.id);},),
-//                  LittleBlackButton(
-//                    titleOfButton: 'Sign up',
-//                    onPressed: () {
-//                      Navigator.pushNamed(context, RegistrationScreen.id);},),
-//                  LittleBlackButton(
-//                    titleOfButton: 'Sign up with Web3',
-//                    onPressed: () {
-//                      Navigator.pushNamed(context, Web3Screen.id);},),
-//                  LittleBlackButton(
-//                    titleOfButton: 'Connect with Amberdata',
-//                    onPressed: () {
-//                      Navigator.pushNamed(context, AmberdataScreen.id);},),
                 ]),
           ),
         ),
