@@ -1,0 +1,339 @@
+[
+    {
+        "business_status": "OPERATIONAL",
+        "formatted_address": "310 East 67th Street Between 1st And, 2nd Ave, New York, NY 10065, United States",
+        "geometry": {
+            "location": {
+                "lat": 40.7646552,
+                "lng": -73.95996050000001
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 40.76631317989273,
+                    "lng": -73.95856892010727
+                },
+                "southwest": {
+                    "lat": 40.76361352010728,
+                    "lng": -73.96126857989272
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        "id": "6ac0943d5a005be29bcf10f1e254fbd126aca2c1",
+        "name": "New York Blood Center",
+        "opening_hours": {
+            "open_now": true
+        },
+        "photos": [
+            {
+                "height": 4032,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/100261532920038207691\">Ken Chester Jr</a>"
+                ],
+                "photo_reference": "CmRaAAAAUss6oTfx37KzshhqFmnHcwYdyOf2jgD8tTYhRckyYdbknPDX8LHEv41kGerz_-VL8Ehx2uXqrCB_3O2Xj0CHoQfvZhm5ZgDoDvPA5v7aDzlD3LHssEFrrfJQiYYvWXJ4EhDNzpv1Osk1pAVHwp7pLug6GhRmJYpDme08q3yJNUA3wQKo6lL04Q",
+                "width": 3024
+            }
+        ],
+        "place_id": "ChIJr8ucwulYwokR8JcBcoGMZLw",
+        "plus_code": {
+            "compound_code": "Q27R+V2 New York, United States",
+            "global_code": "87G8Q27R+V2"
+        },
+        "rating": 3.4,
+        "reference": "ChIJr8ucwulYwokR8JcBcoGMZLw",
+        "types": [
+            "health",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 50,
+        "image": "https://lh3.googleusercontent.com/p/AF1QipNORLMgPRIIgo1b8X1zsHJH4vd2szqtWDA3OZ62=s1600-w1280"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "formatted_address": "625 8th Avenue Between 40th And 41st Streets Main Floor, New York, NY 10018, United States",
+        "geometry": {
+            "location": {
+                "lat": 40.7568489,
+                "lng": -73.9911705
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 40.75823657989272,
+                    "lng": -73.98979272010727
+                },
+                "southwest": {
+                    "lat": 40.75553692010728,
+                    "lng": -73.99249237989272
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        "id": "fd31285f16ad7ba37fbf295929f68eecfcb79fa0",
+        "name": "New York Blood Center",
+        "opening_hours": {
+            "open_now": false
+        },
+        "photos": [
+            {
+                "height": 3024,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/111793281148483537299\">Warren Sze</a>"
+                ],
+                "photo_reference": "CmRaAAAAeLGy9iJSdroBXjOVC4-bCd2H3XBV0Md3GXyXrqfahG97Q-qSMTitWiAAbHMZicE5Q7h3mn7MuuF_-v0UhtcFDkZxecJc7Bb14v8erocZFdSw6DaIAvYAa6s7TOptPGUzEhCMFvXwjeVEmr1O4vlJ81MSGhQZiz6LY-iE_7a0pq4miPFmlAmRlg",
+                "width": 4032
+            }
+        ],
+        "place_id": "ChIJTXlg2lJYwokRYJARIvyrk8Y",
+        "plus_code": {
+            "compound_code": "Q245+PG New York, United States",
+            "global_code": "87G8Q245+PG"
+        },
+        "rating": 4,
+        "reference": "ChIJTXlg2lJYwokRYJARIvyrk8Y",
+        "types": [
+            "health",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 15,
+        "image": "https://lh3.googleusercontent.com/p/AF1QipOVY13G9bTWnpP2mhWLnRaHMSblBRzIXII6-bH3=s1600-w1280"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "formatted_address": "45-01 Vernon Blvd, Queens, NY 11101, United States",
+        "geometry": {
+            "location": {
+                "lat": 40.7477715,
+                "lng": -73.9516525
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 40.74919047989272,
+                    "lng": -73.95065837010726
+                },
+                "southwest": {
+                    "lat": 40.74649082010728,
+                    "lng": -73.95335802989271
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        "id": "3ba1c1b13c0fc1c32994986fe2b8367733ae8260",
+        "name": "New York Blood Center",
+        "photos": [
+            {
+                "height": 4000,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/110794544223973421505\">Greg Dumas</a>"
+                ],
+                "photo_reference": "CmRaAAAAvjYwifbiOSYueNPfloX7zb4dfcUu0b5Irvo-Xey4d_2zCUry1naqChSpgMi7vVO7bD59--QyKm2I-4_SB9iWb3YSFLUmk2pgr_Wqn8yo0Sd1jg3xXkxRhbY8PjP0FsCJEhBpaK-M5pKdWITg2gcOlHAKGhSXhMVOX9ZECFoOuqfFYjkWMvHfjw",
+                "width": 6000
+            }
+        ],
+        "place_id": "ChIJcY4w3iZZwokRMI3mgxt1BDY",
+        "plus_code": {
+            "compound_code": "P2XX+48 Queens, New York, United States",
+            "global_code": "87G8P2XX+48"
+        },
+        "rating": 2.6,
+        "reference": "ChIJcY4w3iZZwokRMI3mgxt1BDY",
+        "types": [
+            "health",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 7,
+        "image": "https://lh3.googleusercontent.com/p/AF1QipNXCvTlBCaoHhOUFj0-m9xr9GaZUKN0ivWUKz1-=s1600-w1280"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "formatted_address": "200 Park Ave, New York, NY 10017, United States",
+        "geometry": {
+            "location": {
+                "lat": 40.7534666,
+                "lng": -73.9761454
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 40.75478952989272,
+                    "lng": -73.97473072010727
+                },
+                "southwest": {
+                    "lat": 40.75208987010728,
+                    "lng": -73.97743037989272
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        "id": "ba981eaa243a053f3fce9c1eceb1129601baa52e",
+        "name": "Grand Central Donor Center",
+        "opening_hours": {
+            "open_now": false
+        },
+        "photos": [
+            {
+                "height": 4032,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/104456546067486087002\">Ari Schnall</a>"
+                ],
+                "photo_reference": "CmRaAAAAoEaf_s6zPgoPc4CmKB3nmGXINOpcAEEiRXktFZECg1P4dGUqJfPs1vjMpXhCkupGTBnQmDZdCWTRKQgy2X968jds_FX6ZFtGvzlu878dqSOp6G_BAR0hUz9hzsel8cv6EhBoPIvzszV-iLX23FsRAxJwGhSxafySDqwqlWoDoaoHMS9OMCFXpw",
+                "width": 3024
+            }
+        ],
+        "place_id": "ChIJ18vEEQJZwokRd5rmCJjtz9Q",
+        "plus_code": {
+            "compound_code": "Q23F+9G New York, United States",
+            "global_code": "87G8Q23F+9G"
+        },
+        "rating": 3.9,
+        "reference": "ChIJ18vEEQJZwokRd5rmCJjtz9Q",
+        "types": [
+            "health",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 21,
+        "image": "https://lh3.googleusercontent.com/p/AF1QipMhhAMGp1BBFJzRI9DkN1NT9M5xHcmoiO23wyfK=s1600-w1280"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "formatted_address": "1250 1st Avenue Between 67th and 68th Streets, New York, NY 10065, United States",
+        "geometry": {
+            "location": {
+                "lat": 40.764793,
+                "lng": -73.95777799999999
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 40.76621147989272,
+                    "lng": -73.95658777010726
+                },
+                "southwest": {
+                    "lat": 40.76351182010728,
+                    "lng": -73.95928742989271
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        "id": "b703876b5f3d73308835c3e5a629ca3871942be3",
+        "name": "Memorial Sloan Kettering Blood Donation Room",
+        "opening_hours": {
+            "open_now": false
+        },
+        "place_id": "ChIJG0BiQcJYwokR7_Boslr1uG0",
+        "plus_code": {
+            "compound_code": "Q27R+WV New York, United States",
+            "global_code": "87G8Q27R+WV"
+        },
+        "rating": 4.6,
+        "reference": "ChIJG0BiQcJYwokR7_Boslr1uG0",
+        "types": [
+            "health",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 13,
+        "image": "https://portaltibia.com.br/wp-content/themes/crystalskull/img/defaults/default.jpg"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "formatted_address": "Above Verizon Wireless At Pergament Mall, 2791 Richmond Ave, Staten Island, NY 10314, United States",
+        "geometry": {
+            "location": {
+                "lat": 40.5785397,
+                "lng": -74.16895
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 40.57989627989272,
+                    "lng": -74.16771632010727
+                },
+                "southwest": {
+                    "lat": 40.57719662010728,
+                    "lng": -74.17041597989272
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        "id": "b62c26f0420c9b9f69fa9db094227f895b431c6d",
+        "name": "New York Blood Center",
+        "opening_hours": {
+            "open_now": false
+        },
+        "photos": [
+            {
+                "height": 3024,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/117916411955421813182\">Brendan Gutenschwager</a>"
+                ],
+                "photo_reference": "CmRaAAAAoFKCg-vfeKuzVTaI_laN9OgyqJ8cMnblYkSunRpVdpB_R5d7KtJUV-xC9R9kCmaqZ6rcMebCmWuJhRcLEozQ8pQ4stel4c3y05MKnQ4E33tdzAQS7Q_9yHM7d5NJQ91vEhDmOEwOaaojZWtMZ_5KxHI6GhRfZ9LlBYYEEZ7pEPAMVhYZsDveuw",
+                "width": 4032
+            }
+        ],
+        "place_id": "ChIJu-VLaIBLwokRtQWIQXBJS_A",
+        "plus_code": {
+            "compound_code": "HRHJ+CC Staten Island, New York, United States",
+            "global_code": "87G7HRHJ+CC"
+        },
+        "rating": 3.9,
+        "reference": "ChIJu-VLaIBLwokRtQWIQXBJS_A",
+        "types": [
+            "health",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 17,
+        "image": "https://lh3.googleusercontent.com/p/AF1QipN2jUXqLW8mJBRWNd2iVyjc9-kiuUH1UZxKvoUK=s1600-w1280"
+    },
+    {
+        "business_status": "OPERATIONAL",
+        "formatted_address": "290 Sunrise Hwy, Rockville Centre, NY 11570, United States",
+        "geometry": {
+            "location": {
+                "lat": 40.656852,
+                "lng": -73.6436715
+            },
+            "viewport": {
+                "northeast": {
+                    "lat": 40.65839292989271,
+                    "lng": -73.64229287010727
+                },
+                "southwest": {
+                    "lat": 40.65569327010727,
+                    "lng": -73.64499252989272
+                }
+            }
+        },
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        "id": "74ee9329ad499b09ee0b0d0be04eb527044b22e6",
+        "name": "New York Blood Center",
+        "opening_hours": {
+            "open_now": true
+        },
+        "photos": [
+            {
+                "height": 1080,
+                "html_attributions": [
+                    "<a href=\"https://maps.google.com/maps/contrib/110721489336084932036\">Alvaro Figueroa</a>"
+                ],
+                "photo_reference": "CmRaAAAAQp7Vw3-rG9DSRR3pxX0QH7ZjNRoZAzx0Ei1WydpMS1I1p4QDRMC_to_HXyxupTPyCr7C0ynAhjBz2L3irYk6HT6JvZgaFpZOWFH9ATwPTe9uNblwOZSjW_tRo8fO8YrMEhAt4vOcXavlwl_lsPCG1zMYGhTPwuSOPcSAYMc060Sy8BM6dcVaYA",
+                "width": 1920
+            }
+        ],
+        "place_id": "ChIJESgfIVB7wokR9QyBP3e9ol4",
+        "plus_code": {
+            "compound_code": "M944+PG Rockville Centre, Hempstead, NY, United States",
+            "global_code": "87G8M944+PG"
+        },
+        "rating": 4.6,
+        "reference": "ChIJESgfIVB7wokR9QyBP3e9ol4",
+        "types": [
+            "health",
+            "point_of_interest",
+            "establishment"
+        ],
+        "user_ratings_total": 18,
+        "image": "https://lh3.googleusercontent.com/p/AF1QipPqMhmGsWkTA9iQtaYOZyBPyOMdbE_9AQ0Z_5P4=s1600-w1280"
+    }
+]

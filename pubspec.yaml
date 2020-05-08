@@ -14,9 +14,16 @@ dependencies:
   web3dart: ^1.2.3
   animated_text_kit: ^2.0.1
   google_fonts: ^1.0.0
-
-
   cupertino_icons: ^0.1.2
+  google_maps_flutter: ^0.5.27+1
+  dio: ^3.0.9
+  awesome_dialog: ^0.1.4
+  maps_launcher: ^1.2.0
+  geolocation: ^1.1.2
+  permission_handler: ^5.0.0+hotfix.4
+  font_awesome_flutter: ^8.8.1
+  shared_preferences: ^0.5.7+1
+  hex: ^0.1.2
 
 dev_dependencies:
   flutter_test:
@@ -28,7 +35,8 @@ flutter:
   uses-material-design: true
 
   assets:
-  - assets/images/
+    - assets/images/
+    - assets/abi.json
 #  - google_fonts/
 
 #  fonts:

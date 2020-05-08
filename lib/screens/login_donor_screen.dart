@@ -10,7 +10,14 @@ class DonorLoginScreen extends StatefulWidget {
 class _DonorLoginScreenState extends State<DonorLoginScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    //Todo : esta tela vai receber a public key do doador
+    // mesma coisa do ambherdata, quando ele esta 
+    // escolher cidade, nova york please display
+    return Scaffold(
+      body: Center(
+        child: Text('aaa'),
+      ),
+    );
   }
 }
 

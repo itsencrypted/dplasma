@@ -31,6 +31,7 @@ class _DonorActionScreenState extends State<DonorActionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Funcao ir no banco de sangue colido e "action" donation
     return Container();
   }
 }
