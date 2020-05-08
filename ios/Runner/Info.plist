@@ -24,8 +24,6 @@
 	<true/>
 	<key>io.flutter.embedded_views_preview</key>
 	<true/>
-	<key>MGLMapboxAccessToken</key>
-	<string>pk.eyJ1IjoiYnJ1bm9lbGVvZG9ybyIsImEiOiJjazl2eWdqN2owNGNrM2dtcmF0Mm81bjE4In0.j-KLSQDftcb_W16RxaaG1Q</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

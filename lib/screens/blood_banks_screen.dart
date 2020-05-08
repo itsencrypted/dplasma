@@ -3,10 +3,11 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:dplasma/components/blood_bank_carousel_card.dart';
 import 'package:dplasma/models/blood_bank.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:mapbox_gl/mapbox_gl.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:geolocation/geolocation.dart' as geolocation;
@@ -22,32 +23,32 @@ class _BloodBanksScreenState extends State<BloodBanksScreen> {
   // LatLng _center = LatLng(40.762681, -73.832611);
   bool isLoading = true;
   List<BloodBank> bloodBanks = List();
-  MapboxMapController mapController;
+  Set<Marker> markers = Set();
+
   PageController controller = PageController(
     viewportFraction: 0.8,
     initialPage: 0,
   );
-  // SymbolOptions(
-  //       geometry: LatLng(position.latitude, position.longitude),
-  //       textAnchor: "Here",
-  //       iconImage: 'assets/images/red-cross.png',
-  //       iconSize: 0.1,
-  //       iconColor: '#CCCCCC'
-  //     )
 
-  Symbol currentLocation = new Symbol(
-      "currentLocation",
-      SymbolOptions(
-          geometry: LatLng(0,0),
-          textAnchor: "Here",
-          iconImage: 'assets/images/red-cross.png',
-          iconSize: 0.1,
-          iconColor: '#CCCCCC'));
+  Completer<GoogleMapController> _controller = Completer();
+
+  static final CameraPosition _kGooglePlex = CameraPosition(
+    target: LatLng(40.812975, -73.919552),
+    zoom: 10,
+  );
+
+  static final CameraPosition _kLake = CameraPosition(
+      bearing: 192.8334901395799,
+      target: LatLng(37.43296265331129, -122.08832357078792),
+      tilt: 59.440717697143555,
+      zoom: 19.151926040649414);
 
   void getBloodBanks() async {
     setState(() {
       isLoading = true;
     });
+    GoogleMapController controller = await _controller.future;
+
     Dio dio = Dio();
     Response bloodBanksApi = await dio.get(
         'https://raw.githubusercontent.com/BrunoEleodoro/dPlasma_data/master/blood_banks_google.json');
@@ -63,27 +64,24 @@ class _BloodBanksScreenState extends State<BloodBanksScreen> {
           geometry: geometry,
           bloodbankAddress: EthereumAddress.fromHex(
               "0x0000000000000000000000000000000000000000"),
-          image: json[i]['image']);
+          image: json[i]['image'],
+          name: json[i]['name']);
 
       bloodBanks.add(bloodBank);
-
-      mapController.addSymbol(SymbolOptions(
-        geometry: bloodBank.geometry,
-        textAnchor: bloodBank.address,
-        iconImage: 'assets/images/red-cross.png',
-        iconSize: 0.1,
-      ));
+      BitmapDescriptor icon = await BitmapDescriptor.fromAssetImage(
+          ImageConfiguration(size: Size(52, 52)),
+          'assets/images/marker_blood.png');
+      markers.add(Marker(
+          markerId: MarkerId(bloodBank.geometry.toString()),
+          icon: icon,
+          position: bloodBank.geometry));
       i++;
     }
 
     setState(() {
       isLoading = false;
+      markers = markers;
     });
-  }
-
-  void _onMapCreated(MapboxMapController controller) {
-    mapController = controller;
-    getBloodBanks();
   }
 
   void getCurrentLocation() async {
@@ -99,12 +97,11 @@ class _BloodBanksScreenState extends State<BloodBanksScreen> {
     StreamSubscription<Position> positionStream = geolocator
         .getPositionStream(locationOptions)
         .listen((Position position) {
-      print(position == null
-          ? 'Unknown'
-          : position.latitude.toString() +
-              ', ' +
-              position.longitude.toString());
-              // mapController.symbols.toList();
+      // print(position == null
+      //     ? 'Unknown'
+      //     : position.latitude.toString() +
+      //         ', ' +
+      //         position.longitude.toString());
     });
   }
 
@@ -112,6 +109,13 @@ class _BloodBanksScreenState extends State<BloodBanksScreen> {
   void initState() {
     super.initState();
     getCurrentLocation();
+    Future.delayed(Duration.zero, () async {
+      //waiting for google maps be ready to execute functions
+      await _controller.future;
+
+      //getting data from API
+      getBloodBanks();
+    });
   }
 
   @override
@@ -119,107 +123,37 @@ class _BloodBanksScreenState extends State<BloodBanksScreen> {
     return Scaffold(
         body: Stack(
       children: <Widget>[
-        MapboxMap(
-          myLocationEnabled: true,
-          onMapClick: (point, coordinates) {
-            // print('clicked');
-            // print(point);
-            // print(coordinates);
+        GoogleMap(
+          mapType: MapType.normal,
+          initialCameraPosition: _kGooglePlex,
+          onMapCreated: (GoogleMapController controller) {
+            _controller.complete(controller);
           },
-          zoomGesturesEnabled: true,
-          styleString:
-              'mapbox://styles/brunoeleodoro/ck9wuqx8y0t0r1imtbdl44yrj',
-          onMapCreated: _onMapCreated,
-          initialCameraPosition: const CameraPosition(
-              target: LatLng(40.812975, -73.919552), zoom: 10),
+          markers: markers,
         ),
         Align(
           alignment: Alignment.bottomCenter,
           child: Container(
             width: double.maxFinite,
-            margin: EdgeInsets.only(bottom: 10),
-            height: 208,
+            margin: EdgeInsets.only(bottom: 0),
+            height: 340,
             child: PageView.builder(
                 itemCount: bloodBanks.length,
                 itemBuilder: (context, index) {
                   BloodBank e = bloodBanks[index];
-                  return Card(
-                    elevation: 3,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20),
-                            bottomLeft: Radius.circular(20),
-                            bottomRight: Radius.circular(20))),
-                    child: Stack(
-                      children: <Widget>[
-                        Container(
-                          height: 200,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  topRight: Radius.circular(20),
-                                  bottomLeft: Radius.circular(20),
-                                  bottomRight: Radius.circular(20)),
-                              image: DecorationImage(
-                                  image: NetworkImage(e.image),
-                                  fit: BoxFit.cover)),
-                        ),
-                        Container(
-                          height: 200,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  topRight: Radius.circular(20),
-                                  bottomLeft: Radius.circular(20),
-                                  bottomRight: Radius.circular(20)),
-                              color: Colors.black.withOpacity(0.3)),
-                        ),
-                        Align(
-                          alignment: Alignment.topCenter,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 18.0),
-                            child: Image.asset(
-                              'assets/images/red-cross.png',
-                              width: 30,
-                            ),
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Padding(
-                              padding: const EdgeInsets.only(
-                                  bottom: 18.0, left: 8, right: 8),
-                              child: Text(
-                                e.address,
-                                style: TextStyle(color: Colors.white),
-                              )),
-                        ),
-                        // SizedBox(
-                        //   height: 10,
-                        // ),
-                        // Image.asset(
-                        //   'assets/images/red-cross.png',
-                        //   width: 30,
-                        // ),
-                        // SizedBox(
-                        //   height: 10,
-                        // ),
-                        // Text(e.address)
-                      ],
-                    ),
+                  return BloodBankCard(
+                    bloodBank: e,
                   );
                 },
-                onPageChanged: (page) {
-                  Symbol marker = mapController.symbols.toList()[page];
-                  mapController.animateCamera(
-                      CameraUpdate.newCameraPosition(CameraPosition(
-                    target: marker.options.geometry,
-                    zoom: 13,
-                  )));
+                onPageChanged: (page) async {
+                  BloodBank e = bloodBanks[page];
+                  final GoogleMapController controller =
+                      await _controller.future;
+                  controller.animateCamera(CameraUpdate.newCameraPosition(
+                      CameraPosition(target: e.geometry, zoom: 14)),);
                 },
                 controller: PageController(
-                  viewportFraction: 0.5,
+                  viewportFraction: 0.6,
                   initialPage: 0,
                 )),
           ),

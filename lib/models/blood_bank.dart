@@ -1,5 +1,5 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart';
-import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:web3dart/crypto.dart';
 import 'package:web3dart/web3dart.dart';
 
@@ -7,6 +7,7 @@ class BloodBank {
   EthereumAddress bloodbankAddress;
   String address;
   LatLng geometry;
+  String name;
   String image;
 
 //TODO: encher com as variaveis daqui: https://www.oneblood.org/
@@ -14,6 +15,7 @@ class BloodBank {
     this.bloodbankAddress,
     this.address,
     this.geometry,
+    this.name,
     this.image
   });
 }
