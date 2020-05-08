@@ -9,7 +9,7 @@ class BloodBank {
   LatLng geometry;
   String name;
   String image;
-
+  String city;
 //TODO: encher com as variaveis daqui: https://www.oneblood.org/
   BloodBank({
     this.bloodbankAddress,

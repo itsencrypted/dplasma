@@ -1,5 +1,6 @@
 import 'package:dplasma/screens/login_donor_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String id = 'welcome_screen';
@@ -22,7 +23,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     super.initState();
 
     controller = AnimationController(
-      duration: Duration(seconds: 1),
+      duration: Duration(seconds: 15),
       vsync: this,
     );
     animation =

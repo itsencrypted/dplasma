@@ -12,6 +12,8 @@ dependencies:
   intl: ^0.16.1
   geolocator: ^5.3.1
   web3dart: ^1.2.3
+  animated_text_kit: ^2.0.1
+  google_fonts: ^1.0.0
   cupertino_icons: ^0.1.2
   google_maps_flutter: ^0.5.27+1
   dio: ^3.0.9
@@ -32,6 +34,7 @@ flutter:
 
   assets:
   - assets/images/
+#  - google_fonts/
 
 #  fonts:
 #  - family:
