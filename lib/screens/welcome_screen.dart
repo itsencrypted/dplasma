@@ -27,12 +27,27 @@ class _WelcomeScreenState extends State<WelcomeScreen>
       duration: Duration(seconds: 15),
       vsync: this,
     );
-    animation =
-        ColorTween(begin: kLightBlueish, end: kLightGreen).animate(controller);
+    animation = ColorTween(begin: Colors.black, end: kLightGreen).animate
+      (controller);
+//    CurvedAnimation(parent: controller, curve: Curves.decelerate);
+
+//    controller.reverse(from: 1.0);
+
     controller.forward();
-    controller.addListener(() {
-      setState(() {});
-    });
+
+//    animation.addStatusListener((status) {
+//      if (status == AnimationStatus.completed){
+//        controller.reverse(from: 1.0);}
+//      else if (status == AnimationStatus.dismissed){
+//        controller.forward();
+//      }
+//    });
+
+//    animation.addListener((){
+//      setState(() {
+//       print(animation.value);
+//      });
+//    });
 
     types_dropdown.clear();
 
@@ -73,29 +88,64 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     return Scaffold(
       backgroundColor: animation.value,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0),
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
         child: Center(
           child: SafeArea(
             child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Flexible(
                     child: Hero(
                       tag: 'logo',
                       child: Container(
                           child: Image.asset('assets/images/virus.png'),
-                          height: 400),
+                          height: 300),
                     ),
                   ),
-                  Text(
-                    'dPlasma',
-                    style: TextStyle(fontSize: 60.0, color: Color(0xFFFFFFFF)),
+                  Image.asset('assets/images/logo-transparent.png', height:
+                  300,),
+                  SizedBox(
+                    width: 350.0,
+                    child: ColorizeAnimatedTextKit(
+                        onTap: () {
+                          print("Tap Event");
+                        },
+                        text: [
+                          "dPlasma",
+                          "dPlasma",
+                          "dPlasma",
+                          "dPlasma",
+                        ],
+                        textStyle: TextStyle(
+                          fontSize: 90.0,
+                          fontFamily: "Horizon",
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 0.5,
+                        ),
+                        colors: [
+                          Colors.green.shade700,
+                          Colors.deepPurpleAccent,
+                          Colors.blue,
+                          Colors.yellow,
+                          Colors.red,
+                        ],
+                        textAlign: TextAlign.center,
+                        alignment: AlignmentDirectional
+                            .topStart // or Alignment.topLeft
+                    ),
                   ),
+//                  Text(
+//                    'dPlasma',
+//                    style: TextStyle(fontSize: 60.0, color: Color(0xFFFFFFFF)),
+//                  ),
                   Text(
                     'Passive Immunity to Patients',
                     style: TextStyle(
-                        fontSize: 20, color: Colors.white, letterSpacing: 2.5),
+                        fontSize: 20, fontWeight: FontWeight.w700, color: Colors
+                        .green.shade700,
+                        letterSpacing: 2),
                   ),
+                  SizedBox(height: 50,),
                   DropdownButton(
                     items: types_dropdown,
                     onChanged: (item) {
@@ -107,6 +157,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     height: 5,
                   ),
                   MaterialButton(
+                    color: Colors.black,
                     onPressed: () {
                       switch (selectedItem) {
                         case "Donor":
@@ -123,7 +174,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                           break;
                       }
                     },
-                    child: Text('LOGIN'),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text('LOGIN', style: TextStyle(color: Colors.white),),
+                    ),
                   )
 //                  RoundedButton(
 //                    titleOfButton: 'I\'m a Patient | Family Member',
