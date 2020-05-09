@@ -21,7 +21,6 @@ class _PatientSignUpScreenState extends State<PatientSignUpScreen> {
   TextEditingController cityController = TextEditingController();
   String bloodType = "select";
   bool isINDregistered = false;
-
   String signaturePatient = "";
   bool buttonEnabled = false;
   bool isLoading = false;
@@ -32,7 +31,6 @@ class _PatientSignUpScreenState extends State<PatientSignUpScreen> {
 
   void checkIfAllIsValid() {
     print(bloodType);
-    print (isINDregistered);
     if (nameController.text.isEmpty || cityController.text.isEmpty ||
     hospitalController.text.isEmpty || isINDregistered == false
        || bloodType == 'select'
@@ -59,7 +57,7 @@ class _PatientSignUpScreenState extends State<PatientSignUpScreen> {
       nameController.text,
       hospitalController.text,
       cityController.text,
-      bloodType,
+      BigInt.from(int.parse(bloodType)),
       isINDregistered,
     ]);
     print('txHash=' + res.toString());

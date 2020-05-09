@@ -61,7 +61,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     types_dropdown.add(
       DropdownMenuItem(
         value: 'select',
-        child: Text('Please select your role:'),
+        child: Text('Please Register as a:'),
       ),
     );
     var types = [
@@ -167,10 +167,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     color: Colors.black,
                     onPressed: () {
                       switch (selectedItem) {
-//                        case "Donor":
-//                          Navigator.pushNamed(
-//                              context, DonorSignUpScreen.id);
-//                          break;
+                        case "Donor":
+                          Navigator.pushNamed(
+                              context, DonorSignUpScreen.id);
+                          break;
                         case "Hematologist":
                           Navigator.pushNamed(
                               context, HematologistSignUpScreen.id);
