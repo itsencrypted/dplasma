@@ -36,7 +36,7 @@ flutter:
 
   assets:
     - assets/images/
-    - assets/abi.json
+    - assets/contracts/abi.json
 #  - google_fonts/
 
 #  fonts:

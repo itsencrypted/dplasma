@@ -28,7 +28,8 @@ class _HematologistSignUpScreenState extends State<HematologistSignUpScreen> {
   Widget loadingComponent = Center(child: CircularProgressIndicator());
 
   void checkIfAllIsValid() {
-    if (nameController.text.isEmpty || cityController.text.isEmpty) {
+    if (nameController.text.isEmpty || cityController.text.isEmpty ||
+        isHematologist == false) {
       setState(() {
         buttonEnabled = false;
       });
@@ -48,7 +49,7 @@ class _HematologistSignUpScreenState extends State<HematologistSignUpScreen> {
 
     var res = await EthereumUtils.sendInformationToContract(
         pvteKeyHematologist.toString(), 'HematologistSignup', [
-      true,
+      isHematologist,
       nameController.text,
       cityController.text,
     ]);

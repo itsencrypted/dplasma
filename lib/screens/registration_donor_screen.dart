@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:web3dart/credentials.dart';
 
 
 class DonorSignUpScreen extends StatefulWidget {
@@ -15,13 +14,3 @@ class _DonorSignUpScreenState extends State<DonorSignUpScreen> {
     return Container();
   }
 }
-
-
-//getPublicKeyFromPrivateKey() async{
-//  String prefix = '0x';
-//  String fullKey = prefix + privateKey;
-//  Credentials fromHex = EthPrivateKey.fromHex(fullKey);
-//  Future<EthereumAddress> addr = fromHex.extractAddress();
-//  addr.then((value) => xyz = value);
-//  return xyz.toString();
-//}

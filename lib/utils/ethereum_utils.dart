@@ -9,7 +9,7 @@ import 'package:dplasma/constants.dart';
 
 
 class EthereumUtils {
-  static String abiPath = "assets/abi.json";
+  static String abiPath = "assets/contracts/abi.json";
   static Web3Client client = Web3Client( apiUrl,
       http.Client());
 
