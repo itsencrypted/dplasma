@@ -59,3 +59,5 @@ class Donor{
 //    bool hadAnyPregnanciesorMiscarriagesMoreThanTwiceIsTrue,
 //uint256 lastTattoo) {}
 
+
+
