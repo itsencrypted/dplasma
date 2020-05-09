@@ -30,6 +30,8 @@ class EthereumUtils {
     Completer<String> completer = new Completer();
     DeployedContract contract = await generateContract();
     Credentials credentials = getCredentials(privateKey);
+    credentials.extractAddress();
+//    print(contract.functions);
     ContractFunction function = contract.function(action);
     await client
         .sendTransaction(
@@ -54,6 +56,12 @@ class EthereumUtils {
     return credentials;
   }
 
+  //// In either way, the library can derive the public key and the address
+//// from a private key:
+//  var address = await credentials.extractAddress();
+//  print(address.hex);
+//
+
 //  static Future<HashMap> createWallet() async {
 //    var rng = Random.secure();
 //    Credentials creds = EthPrivateKey.createRandom(rng);
@@ -69,14 +77,3 @@ class EthereumUtils {
 //  }
 }
 
-
-//
-//
-//
-
-//
-//// In either way, the library can derive the public key and the address
-//// from a private key:
-//var address = await credentials.extractAddress();
-//print(address.hex);
-//

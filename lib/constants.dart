@@ -36,16 +36,16 @@ const pvteKeyBloodBank = 'E034F34DBE61F4B61F28B3956BD766D22F447960AAFB8D71139'
 
 const Rinkeby = 4;
 //Infura Node Juliana @ Rinkeby
-//const apiUrl = "https://rinkeby.infura.io/v3/1fc5af390b99412f864b52fd4ca975ea";
+const apiUrl = "https://rinkeby.infura.io/v3/1fc5af390b99412f864b52fd4ca975ea";
 //Infura Node Bruno @ Rinkeby
-const apiUrl =     "https://rinkeby.infura"
-".io/v3/6c35b5b0fa1b4010be4f0db6e60002cb";
+//const apiUrl =     "https://rinkeby.infura"
+//".io/v3/6c35b5b0fa1b4010be4f0db6e60002cb";
 
 const String dPlasmaContractAddress = "0xE837840eF6Fd42119c8D5C6eED5EA160e8804EB4";
 //  static String contractAddress = "0xD1CC1D57695E394cC48c8Dba4891160E66bAcB85";
 
 const String hematologistImage = 'assets/images/hematologist.png';
-const String doctorNYUImage = 'assets/images/doctorNYU.png';
+const String doctorNYUImage = 'assets/images/doctorNYU.jpg';
 const String doctorMtSinaiImage = 'assets/images/doctorMtSinai.png';
 const String donor1Image = 'assets/images/donor1.png';
 const String donor2Image = 'assets/images/donor2.png';
@@ -58,3 +58,8 @@ const String patient2Image = 'assets/images/patient2.jpg';
 const String patient3Image = 'assets/images/patient3.jpg';
 
 
+//TODO: Remember to Register Hospital (NYU with NYU key and MtSinai with
+// MtSinai pvte key)
+
+//TODO: Remember to Switch keys for Hospitals, Doctors, Patients, Donors,
+// pvteKey Changes

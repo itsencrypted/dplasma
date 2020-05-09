@@ -1,5 +1,6 @@
 import 'package:dplasma/screens/login_donor_screen.dart';
 import 'package:dplasma/screens/registration_bloodbank_screen.dart';
+import 'package:dplasma/screens/registration_doctor_screen.dart';
 import 'package:dplasma/screens/registration_donor_screen.dart';
 import 'package:dplasma/screens/registration_hematologist_screen.dart';
 import 'package:dplasma/screens/registration_hospital_screen.dart';
@@ -174,17 +175,21 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                           Navigator.pushNamed(
                               context, HematologistSignUpScreen.id);
                           break;
-//                        case "Patient/Family Member":
-//                          Navigator.pushNamed(
-//                              context, PatientSignUpScreen.id);
-//                          break;
-//                        case "Blood Bank":
-//                          Navigator.pushNamed(
-//                              context, BloodBankSignUpScreen.id);
-//                          break;
-//                        case "Hospital":
-//                          Navigator.pushNamed(context, HospitalSignUpScreen.id);
-//                          break;
+                        case "Patient/Family Member":
+                          Navigator.pushNamed(
+                              context, PatientSignUpScreen.id);
+                          break;
+                        case "Blood Bank":
+                          Navigator.pushNamed(
+                              context, BloodBankSignUpScreen.id);
+                          break;
+                        case "Hospital":
+                          Navigator.pushNamed(context, HospitalSignUpScreen.id);
+                          break;
+                        case "Doctor":
+                          Navigator.pushNamed(
+                              context, DoctorSignUpScreen.id);
+                          break;
                       }
                     },
                     child: Padding(

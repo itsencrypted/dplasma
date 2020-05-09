@@ -68,7 +68,6 @@ import 'package:google_fonts/google_fonts.dart';
       }
     }
 
-
 TextStyle hematologistHandwritting = GoogleFonts.homemadeApple(
   textStyle: TextStyle(
     fontSize: 30.0,
