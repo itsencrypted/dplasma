@@ -48,15 +48,9 @@
 			},
 			{
 				"indexed": false,
-				"internalType": "uint256",
-				"name": "lastTattoo",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "lastDonation",
-				"type": "uint256"
+				"internalType": "bool",
+				"name": "hasNotDonatedLastFourWeeks",
+				"type": "bool"
 			}
 		],
 		"name": "DonorChanges",
@@ -135,6 +129,18 @@
 			},
 			{
 				"indexed": false,
+				"internalType": "uint256",
+				"name": "birthDate",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "bool",
+				"name": "hasNotDonatedLastFourWeeks",
+				"type": "bool"
+			},
+			{
+				"indexed": false,
 				"internalType": "bool",
 				"name": "serologicalTestIsPositive",
 				"type": "bool"
@@ -143,6 +149,12 @@
 				"indexed": false,
 				"internalType": "bool",
 				"name": "pcrResultIsNegative",
+				"type": "bool"
+			},
+			{
+				"indexed": false,
+				"internalType": "bool",
+				"name": "isMale",
 				"type": "bool"
 			}
 		],
@@ -217,6 +229,12 @@
 			{
 				"indexed": false,
 				"internalType": "string",
+				"name": "patient",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
 				"name": "city",
 				"type": "string"
 			},
@@ -231,33 +249,16 @@
 				"internalType": "enum dPlasma.BloodTypes",
 				"name": "bloodType",
 				"type": "uint8"
+			},
+			{
+				"indexed": false,
+				"internalType": "bool",
+				"name": "isINDregistered",
+				"type": "bool"
 			}
 		],
 		"name": "NewPatient",
 		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bool",
-				"name": "ishematologistDoctor",
-				"type": "bool"
-			},
-			{
-				"internalType": "string",
-				"name": "hematologistName",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "city",
-				"type": "string"
-			}
-		],
-		"name": "HematologistSignup",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
 	},
 	{
 		"inputs": [
@@ -383,7 +384,7 @@
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "patientAddress",
+				"name": "bloodbankAddress",
 				"type": "address"
 			}
 		],
@@ -414,11 +415,6 @@
 			},
 			{
 				"internalType": "address",
-				"name": "patientAddress",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
 				"name": "donorAddress",
 				"type": "address"
 			},
@@ -439,14 +435,9 @@
 				"type": "string"
 			},
 			{
-				"internalType": "uint256",
-				"name": "lastTattoo",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "lastDonation",
-				"type": "uint256"
+				"internalType": "bool",
+				"name": "hasNotDonatedLastFourWeeks",
+				"type": "bool"
 			}
 		],
 		"name": "donorChanges",
@@ -472,29 +463,14 @@
 				"type": "uint256"
 			},
 			{
-				"internalType": "uint256",
-				"name": "bodyWeight",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "lastDonation",
-				"type": "uint256"
+				"internalType": "bool",
+				"name": "hasNotDonatedLastFourWeeks",
+				"type": "bool"
 			},
 			{
 				"internalType": "bool",
 				"name": "serologicalTestIsPositive",
 				"type": "bool"
-			},
-			{
-				"internalType": "uint256",
-				"name": "dateOfFirstSymptom",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "dateOfLastSymptom",
-				"type": "uint256"
 			},
 			{
 				"internalType": "bool",
@@ -503,18 +479,8 @@
 			},
 			{
 				"internalType": "bool",
-				"name": "isFemale",
+				"name": "isMale",
 				"type": "bool"
-			},
-			{
-				"internalType": "bool",
-				"name": "hadAnyPregnanciesorMiscarriagesMoreThanTwiceIsTrue",
-				"type": "bool"
-			},
-			{
-				"internalType": "uint256",
-				"name": "lastTattoo",
-				"type": "uint256"
 			}
 		],
 		"name": "donorSignup",
@@ -553,29 +519,14 @@
 				"type": "uint256"
 			},
 			{
-				"internalType": "uint256",
-				"name": "bodyWeight",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "lastDonation",
-				"type": "uint256"
+				"internalType": "bool",
+				"name": "hasNotDonatedLastFourWeeks",
+				"type": "bool"
 			},
 			{
 				"internalType": "bool",
 				"name": "serologicalTestIsPositive",
 				"type": "bool"
-			},
-			{
-				"internalType": "uint256",
-				"name": "dateOfFirstSymptom",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "dateOfLastSymptom",
-				"type": "uint256"
 			},
 			{
 				"internalType": "bool",
@@ -584,21 +535,34 @@
 			},
 			{
 				"internalType": "bool",
-				"name": "isFemale",
+				"name": "isMale",
 				"type": "bool"
-			},
-			{
-				"internalType": "bool",
-				"name": "hadAnyPregnanciesorMiscarriagesMoreThanTwiceIsTrue",
-				"type": "bool"
-			},
-			{
-				"internalType": "uint256",
-				"name": "lastTattoo",
-				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bool",
+				"name": "ishematologistDoctor",
+				"type": "bool"
+			},
+			{
+				"internalType": "string",
+				"name": "hematologistName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "city",
+				"type": "string"
+			}
+		],
+		"name": "hematologistSignup",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -686,12 +650,17 @@
 		"inputs": [
 			{
 				"internalType": "string",
-				"name": "city",
+				"name": "patient",
 				"type": "string"
 			},
 			{
 				"internalType": "string",
 				"name": "hospital",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "city",
 				"type": "string"
 			},
 			{
@@ -727,12 +696,17 @@
 			},
 			{
 				"internalType": "string",
-				"name": "city",
+				"name": "patient",
 				"type": "string"
 			},
 			{
 				"internalType": "string",
 				"name": "hospital",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "city",
 				"type": "string"
 			},
 			{

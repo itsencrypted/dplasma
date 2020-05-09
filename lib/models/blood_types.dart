@@ -23,29 +23,23 @@ enum BloodTypes {
 //  "O+": ["O−", "O+"],
 //  "O-": ["O-"]
 }
-//
-//class SelectBloodType extends StatelessWidget {
-//  BoolQuestion({this.question, this.isParameterTrue, this.onChanged});
-//
-//  final BloodTypes bloodTypes;
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    return CheckboxListTile(
-////      title: Text('Are you an accredited hematologist?'),
-////      value: isHematologist,
-////      onChanged: (value){
-////        setState(() {
-////          isHematologist = value;
-////          print(value);
-////        });
-//
-//        title: Text(question),
-//        value: isParameterTrue,
-//        onChanged: onChanged
-//    );
-//  }
-//}
+
+class SelectBloodType extends StatelessWidget {
+
+  SelectBloodType({this.onChanged, this.selectedBloodType});
+
+  final Function onChanged;
+  final String selectedBloodType;
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton(
+      items: getDropdownBloodTypesList(),
+      onChanged: onChanged,
+      value: selectedBloodType,
+    );
+  }
+}
 
 //1	donor1 (A-)
 //1	donor2 (A+)
@@ -55,11 +49,11 @@ enum BloodTypes {
 //1	NYUpatient2 (AB+)
 //1	MtSinaipatient3 (A-)
 
-Widget getDropdownBloodTypesList() {
+List<Widget> getDropdownBloodTypesList() {
   var dropdownList = [
     DropdownMenuItem(
       value: 'select',
-      child: Text('Please select your role:'),
+      child: Text('Please select your Blood Type:'),
     ),
     DropdownMenuItem(
       value: "0",
@@ -94,4 +88,6 @@ Widget getDropdownBloodTypesList() {
       child: Text("O-"),
     )
   ];
+
+  return dropdownList;
 }
