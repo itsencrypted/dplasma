@@ -1,10 +1,13 @@
 import 'dart:collection';
+import 'package:dplasma/components/dharma_button.dart';
+import 'package:dplasma/components/signature_animation.dart';
 import 'package:dplasma/constants.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:dplasma/utils/ethereum_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class HematologistSignUpScreen extends StatefulWidget {
   static const String id = 'hematologistReg_screen';
@@ -14,14 +17,15 @@ class HematologistSignUpScreen extends StatefulWidget {
       _HematologistSignUpScreenState();
 }
 
-//TODO: Me ensinar o que eh essa signature de string vazia na linha 146
+//TODO: Me ensinar o que eh essa signature de string vazia na linha 146 >>
+// isso vai virar o component signature_animation
 
 //TODO: Chamar tudo do Constants e do EthereumUtils
 
 class _HematologistSignUpScreenState extends State<HematologistSignUpScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController cityController = TextEditingController();
-  String signature = "";
+  String signatureHematologist = "";
   bool buttonEnabled = false;
   bool isLoading = false;
   SharedPreferences prefs;
@@ -40,7 +44,7 @@ class _HematologistSignUpScreenState extends State<HematologistSignUpScreen> {
 
   void signUp() async {
     setState(() {
-      signature = nameController.text;
+      signatureHematologist = nameController.text;
       isLoading = true;
     });
 
@@ -74,12 +78,12 @@ class _HematologistSignUpScreenState extends State<HematologistSignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Container(
               width: double.maxFinite,
-              height: 300,
+              height: 400,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
                   image: DecorationImage(
@@ -136,37 +140,40 @@ class _HematologistSignUpScreenState extends State<HematologistSignUpScreen> {
                       SizedBox(
                         height: 30,
                       ),
-                      Container(
-                        color: Colors.black,
-                        child: MaterialButton(
-                          onPressed: buttonEnabled ? signUp : null,
-                          child: Text('Register in the Blockchain', style:
-                          TextStyle(color: Colors.white),),
-                        ),
-                      ),
-                    ],
+//                Padding(
+//                    padding: const EdgeInsets.only(left: 18.0, right: 18),
+//                    child: MaterialButton(
+//                      onPressed: buttonEnabled ? signUp : null,
+//                      child: Text('Generate Signature'),
+//                      minWidth: double.maxFinite,
+//                      color: Color(0xFF95E08E),
+//                    )),
+
+                DharmaButton(
+                  onPressed: buttonEnabled ? signUp : null,
+                  titleOfButton: 'Register in the Blockchain',
+                ),
+              ],
             ),
             SizedBox(
               // width: 250.0,
-              child: (signature != "")
+              child: (signatureHematologist != "")
                   ? TyperAnimatedTextKit(
-                      onTap: () {
-                        print("Tap Event");
-                      },
-                      text: [
-                        signature,
-                      ],
-                      textStyle: GoogleFonts.homemadeApple(
-                        textStyle: TextStyle(
-                          fontSize: 30.0,
-                          color: Colors.red,
-                        ),
-                      ),
-                      speed: Duration(milliseconds: 500),
-                      textAlign: TextAlign.start,
-                      alignment:
-                          AlignmentDirectional.topStart // or Alignment.topLeft
-                      )
+                  onTap: () {
+                    print("Tap Event");
+                  },
+                  text: [signatureHematologist,],
+                  textStyle: GoogleFonts.homemadeApple(
+                    textStyle: TextStyle(
+                      fontSize: 30.0,
+                      color: Colors.red,
+                    ),
+                  ),
+                  speed: Duration(milliseconds: 500),
+                  textAlign: TextAlign.start,
+                  alignment:
+                  AlignmentDirectional.topStart // or Alignment.topLeft
+              )
                   : Text(''),
             ),
           ],
@@ -175,3 +182,7 @@ class _HematologistSignUpScreenState extends State<HematologistSignUpScreen> {
     );
   }
 }
+
+
+
+
