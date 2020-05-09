@@ -23,6 +23,8 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   final kLightGreen = Color(0xFF95E08E);
   List<DropdownMenuItem<String>> types_dropdown = List();
 
+
+
   @override
   void initState() {
     super.initState();
@@ -83,8 +85,8 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
   @override
   void dispose() {
-    controller.dispose();
     super.dispose();
+    controller.dispose();
   }
 
   @override
@@ -165,23 +167,23 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     onPressed: () {
                       switch (selectedItem) {
 //                        case "Donor":
-//                          Navigator.pushReplacementNamed(
+//                          Navigator.pushNamed(
 //                              context, DonorSignUpScreen.id);
 //                          break;
                         case "Hematologist":
-                          Navigator.pushReplacementNamed(
+                          Navigator.pushNamed(
                               context, HematologistSignUpScreen.id);
                           break;
 //                        case "Patient/Family Member":
-//                          Navigator.pushReplacementNamed(
+//                          Navigator.pushNamed(
 //                              context, PatientSignUpScreen.id);
 //                          break;
 //                        case "Blood Bank":
-//                          Navigator.pushReplacementNamed(
+//                          Navigator.pushNamed(
 //                              context, BloodBankSignUpScreen.id);
 //                          break;
 //                        case "Hospital":
-//                          Navigator.pushReplacementNamed(context, HospitalSignUpScreen.id);
+//                          Navigator.pushNamed(context, HospitalSignUpScreen.id);
 //                          break;
                       }
                     },

@@ -41,8 +41,20 @@ const Rinkeby = 4;
 const apiUrl =     "https://rinkeby.infura"
 ".io/v3/6c35b5b0fa1b4010be4f0db6e60002cb";
 
-const String dPlasmaContractAddress = "0xD1CC1D57695E394cC48c8Dba4891160E66bAcB85";
+const String dPlasmaContractAddress = "0xE837840eF6Fd42119c8D5C6eED5EA160e8804EB4";
 //  static String contractAddress = "0xD1CC1D57695E394cC48c8Dba4891160E66bAcB85";
 
+const String hematologistImage = 'assets/images/hematologist.png';
+const String doctorNYUImage = 'assets/images/doctorNYU.png';
+const String doctorMtSinaiImage = 'assets/images/doctorMtSinai.png';
+const String donor1Image = 'assets/images/donor1.png';
+const String donor2Image = 'assets/images/donor2.png';
+const String donor3Image = 'assets/images/donor3.png';
+const String bloodbankImage = 'assets/images/icon-hospital.png';
+const String hospitalNYUImage = 'assets/images/nyuhospital.jpg';
+const String hospitalMtSinaiImage = 'assets/images/mtsinaihospital.jpg';
+const String patient1Image = 'assets/images/patient1.jpg';
+const String patient2Image = 'assets/images/patient2.jpg';
+const String patient3Image = 'assets/images/patient3.jpg';
 
 

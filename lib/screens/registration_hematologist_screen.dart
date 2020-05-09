@@ -1,12 +1,9 @@
-import 'dart:collection';
 import 'package:dplasma/components/dharma_button.dart';
-import 'package:dplasma/components/signature_animation.dart';
 import 'package:dplasma/constants.dart';
+import 'package:dplasma/models/registration_form.dart';
 import 'package:dplasma/utils/ethereum_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 
 class HematologistSignUpScreen extends StatefulWidget {
@@ -20,15 +17,16 @@ class HematologistSignUpScreen extends StatefulWidget {
 //TODO: Me ensinar o que eh essa signature de string vazia na linha 146 >>
 // isso vai virar o component signature_animation
 
-//TODO: Chamar tudo do Constants e do EthereumUtils
 
 class _HematologistSignUpScreenState extends State<HematologistSignUpScreen> {
   TextEditingController nameController = TextEditingController();
+  bool isHematologist = false;
   TextEditingController cityController = TextEditingController();
   String signatureHematologist = "";
   bool buttonEnabled = false;
   bool isLoading = false;
   SharedPreferences prefs;
+  Widget loadingComponent = Center(child: CircularProgressIndicator());
 
   void checkIfAllIsValid() {
     if (nameController.text.isEmpty || cityController.text.isEmpty) {
@@ -42,26 +40,20 @@ class _HematologistSignUpScreenState extends State<HematologistSignUpScreen> {
     }
   }
 
-  void signUp() async {
+  void hematologistSignUp() async {
     setState(() {
       signatureHematologist = nameController.text;
       isLoading = true;
     });
-
-    //TODO: Mudar esse pedaço para que possamos passar somente a
-    // pvteKeyHematologist e tambem a pubKeyHematologist.
-
-    HashMap wallet = await EthereumUtils.createWallet();
-    prefs.setString('privKey', pvteKeyHematologist);
-    prefs.setString('pubKey', wallet['pubKey'].toString());
     prefs.setString('role', 'hematologist');
 
     var res = await EthereumUtils.sendInformationToContract(
         pvteKeyHematologist.toString(), 'HematologistSignup', [
       true,
+      nameController.text,
       cityController.text,
     ]);
-    print('txHash='+res.toString());
+    print('txHash=' + res.toString());
     setState(() {
       isLoading = false;
     });
@@ -75,105 +67,64 @@ class _HematologistSignUpScreenState extends State<HematologistSignUpScreen> {
     });
   }
 
+  void registrationOnChanged(value){
+    checkIfAllIsValid();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Container(
-              width: double.maxFinite,
-              height: 400,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  image: DecorationImage(
-                      image: AssetImage('assets/images/hematologist.png'),
-                      fit: BoxFit.cover)),
-            ),
+            PersonaAvatar(personaImage: hematologistImage,),
             SizedBox(
               height: 20,
             ),
             Column(
               children: isLoading
-                  ? <Widget>[Center(child: CircularProgressIndicator())]
+                  ? <Widget>[loadingComponent]
                   : [
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 18.0),
-                          child: Text(
-                            'Please register for the first time',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 22),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 18.0, right: 18),
-                        child: TextFormField(
-                          onChanged: (value) {
-                            checkIfAllIsValid();
-                          },
-                          controller: nameController,
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'Full Name'),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 18.0, right: 18),
-                        child: TextFormField(
-                          onChanged: (value) {
-                            checkIfAllIsValid();
-                          },
-                          controller: cityController,
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(), labelText: 'City'),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
-//                Padding(
-//                    padding: const EdgeInsets.only(left: 18.0, right: 18),
-//                    child: MaterialButton(
-//                      onPressed: buttonEnabled ? signUp : null,
-//                      child: Text('Generate Signature'),
-//                      minWidth: double.maxFinite,
-//                      color: Color(0xFF95E08E),
-//                    )),
-
+              RegistrationTitle(),
+                SizedBox(
+                  height: 20,
+                ),
+                AnimatedContainer(duration: Duration(seconds: 10),),
+                RegistrationField(
+                  onChanged: registrationOnChanged,
+                  controllerName: nameController,
+                  registrationLabel: 'Full Name',
+                ),
+              BoolQuestion(
+                isParameterTrue: isHematologist,
+                question: 'Are you an accredited hematologist?',
+                onChanged: (value){
+                  setState(() {
+                    isHematologist = value;
+                  });
+                },
+              ),
+                SizedBox(
+                  height: 20,
+                ),
+                RegistrationField(
+                  onChanged: registrationOnChanged,
+                  controllerName: cityController,
+                  registrationLabel: 'City',
+                ),
+                SizedBox(
+                  height: 30,
+                ),
                 DharmaButton(
-                  onPressed: buttonEnabled ? signUp : null,
+                  onPressed: buttonEnabled ? hematologistSignUp : null,
                   titleOfButton: 'Register in the Blockchain',
                 ),
               ],
             ),
             SizedBox(
-              // width: 250.0,
               child: (signatureHematologist != "")
-                  ? TyperAnimatedTextKit(
-                  onTap: () {
-                    print("Tap Event");
-                  },
-                  text: [signatureHematologist,],
-                  textStyle: GoogleFonts.homemadeApple(
-                    textStyle: TextStyle(
-                      fontSize: 30.0,
-                      color: Colors.red,
-                    ),
-                  ),
-                  speed: Duration(milliseconds: 500),
-                  textAlign: TextAlign.start,
-                  alignment:
-                  AlignmentDirectional.topStart // or Alignment.topLeft
-              )
+                  ? HandwrittenSignature(handwrittingStyle:
+              hematologistHandwritting, signaturePersona: signatureHematologist,)
                   : Text(''),
             ),
           ],
@@ -182,7 +133,3 @@ class _HematologistSignUpScreenState extends State<HematologistSignUpScreen> {
     );
   }
 }
-
-
-
-
