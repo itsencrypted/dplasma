@@ -74,6 +74,12 @@
 			{
 				"indexed": false,
 				"internalType": "string",
+				"name": "bloodbankName",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
 				"name": "city",
 				"type": "string"
 			}
@@ -89,6 +95,12 @@
 				"internalType": "address",
 				"name": "doctorAddress",
 				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "doctorName",
+				"type": "string"
 			},
 			{
 				"indexed": false,
@@ -145,6 +157,12 @@
 				"internalType": "address",
 				"name": "hematologistAddress",
 				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "hematologistName",
+				"type": "string"
 			},
 			{
 				"indexed": false,
@@ -227,6 +245,11 @@
 			},
 			{
 				"internalType": "string",
+				"name": "hematologistName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
 				"name": "city",
 				"type": "string"
 			}
@@ -253,6 +276,11 @@
 			},
 			{
 				"internalType": "string",
+				"name": "bloodbankName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
 				"name": "city",
 				"type": "string"
 			}
@@ -262,6 +290,11 @@
 	},
 	{
 		"inputs": [
+			{
+				"internalType": "string",
+				"name": "bloodbankName",
+				"type": "string"
+			},
 			{
 				"internalType": "string",
 				"name": "city",
@@ -278,6 +311,11 @@
 			{
 				"internalType": "string",
 				"name": "hospital",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "doctorName",
 				"type": "string"
 			}
 		],
@@ -300,6 +338,11 @@
 				"internalType": "address",
 				"name": "doctorAddress",
 				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "doctorName",
+				"type": "string"
 			},
 			{
 				"internalType": "string",
@@ -572,6 +615,11 @@
 				"internalType": "address",
 				"name": "hematologistAddress",
 				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "hematologistName",
+				"type": "string"
 			},
 			{
 				"internalType": "bool",
