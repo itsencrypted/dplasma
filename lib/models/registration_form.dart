@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_masked_text/flutter_masked_text.dart';
     
     
     class RegistrationField extends StatelessWidget {
@@ -96,7 +97,7 @@ TextStyle bloodbankHandwritting = GoogleFonts.gloriaHallelujah(
   ),
 );
 
-TextStyle donorHandwritting = GoogleFonts.tangerine(
+TextStyle donorHandwritting = GoogleFonts.rockSalt(
   textStyle: TextStyle(
     fontSize: 30.0,
     color: Colors.indigo,
@@ -167,8 +168,12 @@ class BoolQuestion extends StatelessWidget {
   }
 }
 
+int convertDatetoTimeStamp(String date){
+  List<String> dateBlocks = date.split("/");
+//  MM/DD/YYYY
+  String acceptedDateFormat = dateBlocks[2] + "" + dateBlocks[0] + "" +
+      dateBlocks[1];
+  DateTime formatedDate = DateTime.parse(acceptedDateFormat);
 
-
-
-
-
+  return formatedDate.millisecondsSinceEpoch;
+}

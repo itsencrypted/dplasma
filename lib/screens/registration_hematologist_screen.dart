@@ -48,7 +48,7 @@ class _HematologistSignUpScreenState extends State<HematologistSignUpScreen> {
     prefs.setString('role', 'hematologist');
 
     var res = await EthereumUtils.sendInformationToContract(
-        pvteKeyHematologist.toString(), 'HematologistSignup', [
+        pvteKeyHematologist.toString(), 'hematologistSignup', [
       isHematologist,
       nameController.text,
       cityController.text,
