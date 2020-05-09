@@ -10,7 +10,7 @@ import 'package:hex/hex.dart';
 import 'package:dplasma/constants.dart';
 
 // TODO: 
-// constants.dart -> Lembrar de colocar (esta na juliana-dev branch)
+// constants.dart -> Lembrar de colocar (esta na juliana-dev branch) >>> FEITO!
 
 class EthereumUtils {
   static String abiPath = "assets/abi.json";

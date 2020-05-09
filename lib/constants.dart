@@ -36,9 +36,10 @@ const pvteKeyBloodBank = 'E034F34DBE61F4B61F28B3956BD766D22F447960AAFB8D71139'
 
 const Rinkeby = 4;
 //Infura Node Juliana @ Rinkeby
-const apiUrl = "https://rinkeby.infura.io/v3/1fc5af390b99412f864b52fd4ca975ea";
+//const apiUrl = "https://rinkeby.infura.io/v3/1fc5af390b99412f864b52fd4ca975ea";
 //Infura Node Bruno @ Rinkeby
-//      "https://rinkeby.infura.io/v3/6c35b5b0fa1b4010be4f0db6e60002cb",
+const apiUrl =     "https://rinkeby.infura"
+".io/v3/6c35b5b0fa1b4010be4f0db6e60002cb";
 
 const String dPlasmaContractAddress = "0xD1CC1D57695E394cC48c8Dba4891160E66bAcB85";
 //  static String contractAddress = "0xD1CC1D57695E394cC48c8Dba4891160E66bAcB85";
