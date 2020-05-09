@@ -1,5 +1,5 @@
 import 'dart:collection';
-
+import 'package:dplasma/constants.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:dplasma/utils/ethereum_utils.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +13,10 @@ class HematologistSignUpScreen extends StatefulWidget {
   _HematologistSignUpScreenState createState() =>
       _HematologistSignUpScreenState();
 }
+
+//TODO: Me ensinar o que eh essa signature de string vazia na linha 146
+
+//TODO: Chamar tudo do Constants e do EthereumUtils
 
 class _HematologistSignUpScreenState extends State<HematologistSignUpScreen> {
   TextEditingController nameController = TextEditingController();
@@ -40,14 +44,16 @@ class _HematologistSignUpScreenState extends State<HematologistSignUpScreen> {
       isLoading = true;
     });
 
+    //TODO: Mudar esse pedaço para que possamos passar somente a
+    // pvteKeyHematologist e tambem a pubKeyHematologist.
+
     HashMap wallet = await EthereumUtils.createWallet();
-    var privateKeyHM = "E89A693768D25915C91BAC74E02E2E347E593C533304047C992C1DC0067BE159";
-    prefs.setString('privKey',privateKeyHM );
+    prefs.setString('privKey', pvteKeyHematologist);
     prefs.setString('pubKey', wallet['pubKey'].toString());
     prefs.setString('role', 'hematologist');
 
     var res = await EthereumUtils.sendInformationToContract(
-        privateKeyHM.toString(), 'HematologistSignup', [
+        pvteKeyHematologist.toString(), 'HematologistSignup', [
       true,
       cityController.text,
     ]);
@@ -68,16 +74,14 @@ class _HematologistSignUpScreenState extends State<HematologistSignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      body: SafeArea(
         child: Column(
           children: <Widget>[
             Container(
               width: double.maxFinite,
               height: 300,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(30),
-                      bottomRight: Radius.circular(30)),
+                  borderRadius: BorderRadius.circular(30),
                   image: DecorationImage(
                       image: AssetImage('assets/images/hematologist.png'),
                       fit: BoxFit.cover)),
@@ -94,7 +98,7 @@ class _HematologistSignUpScreenState extends State<HematologistSignUpScreen> {
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18.0),
                           child: Text(
-                            'Sign Up',
+                            'Please register for the first time',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 22),
                           ),
@@ -132,14 +136,14 @@ class _HematologistSignUpScreenState extends State<HematologistSignUpScreen> {
                       SizedBox(
                         height: 30,
                       ),
-                      Padding(
-                          padding: const EdgeInsets.only(left: 18.0, right: 18),
-                          child: MaterialButton(
-                            onPressed: buttonEnabled ? signUp : null,
-                            child: Text('Generate Signature'),
-                            minWidth: double.maxFinite,
-                            color: Color(0xFF95E08E),
-                          )),
+                      Container(
+                        color: Colors.black,
+                        child: MaterialButton(
+                          onPressed: buttonEnabled ? signUp : null,
+                          child: Text('Register in the Blockchain', style:
+                          TextStyle(color: Colors.white),),
+                        ),
+                      ),
                     ],
             ),
             SizedBox(

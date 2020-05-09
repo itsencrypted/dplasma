@@ -7,24 +7,23 @@ import 'package:flutter/services.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:http/http.dart' as http;
 import 'package:hex/hex.dart';
+import 'package:dplasma/constants.dart';
 
 // TODO: 
-// constants.dart -> Lembrar de colocar 
+// constants.dart -> Lembrar de colocar (esta na juliana-dev branch)
 
 class EthereumUtils {
   static String abiPath = "assets/abi.json";
-  static String contractAddress = "0xD1CC1D57695E394cC48c8Dba4891160E66bAcB85";
-  static Web3Client client = Web3Client(
-      "https://rinkeby.infura.io/v3/6c35b5b0fa1b4010be4f0db6e60002cb",
+  static Web3Client client = Web3Client( apiUrl,
       http.Client());
-  static int chainId = 4;
+
 
   static Future<DeployedContract> generateContract() {
     Completer<DeployedContract> completer = Completer();
     rootBundle.loadString(abiPath).then((abi) async {
       DeployedContract contract = DeployedContract(
           ContractAbi.fromJson(abi, "dPlasmaContract"),
-          EthereumAddress.fromHex(contractAddress));
+          EthereumAddress.fromHex(dPlasmaContractAddress));
       completer.complete(contract);
     });
     return completer.future;
@@ -44,7 +43,7 @@ class EthereumUtils {
                 function: function,
                 maxGas: 500000,
                 parameters: parameters),
-            chainId: chainId)
+            chainId: Rinkeby)
         .then((hash) {
       completer.complete(hash);
     });
@@ -55,6 +54,11 @@ class EthereumUtils {
     Credentials credentials = EthPrivateKey.fromHex(privKey);
     return credentials;
   }
+
+  // we're not going to generate randomic private keys in this project.
+
+  //TODO: Remove line 66 >>> What is this random "HuLFZ...8l9R" String doing
+  // there?
 
   static Future<HashMap> createWallet() async {
     var rng = Random.secure();
@@ -70,3 +74,4 @@ class EthereumUtils {
      return obj;
   }
 }
+
