@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:dplasma/components/dharma_button.dart';
+import 'package:dplasma/constants.dart';
+import 'package:dplasma/models/registration_form.dart';
+import 'package:dplasma/utils/ethereum_utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BloodBankSignUpScreen extends StatefulWidget {
   static const String id = 'bloodbankReg_screen';
@@ -8,8 +13,111 @@ class BloodBankSignUpScreen extends StatefulWidget {
 }
 
 class _BloodBankSignUpScreenState extends State<BloodBankSignUpScreen> {
+
+  SharedPreferences prefs;
+
+  TextEditingController nameController = TextEditingController();
+  TextEditingController cityController = TextEditingController();
+
+  String signatureBloodBank = "";
+  bool buttonEnabled = false;
+  bool isLoading = false;
+
+  Widget loadingComponent = Center(child: CircularProgressIndicator());
+
+  void checkIfAllIsValid() {
+    if (nameController.text.isEmpty || cityController.text.isEmpty) {
+      setState(() {
+        buttonEnabled = false;
+      });
+    } else {
+      setState(() {
+        buttonEnabled = true;
+      });
+    }
+  }
+
+  void bloodbankSignup() async {
+    setState(() {
+      signatureBloodBank = nameController.text;
+      isLoading = true;
+    });
+    prefs.setString('role', 'Blood Bank');
+
+    var res = await EthereumUtils.sendInformationToContract(
+        pvteKeyBloodBank.toString(), 'bloodbankSignup', [
+      nameController.text,
+      cityController.text,
+    ]);
+    print('txHash=' + res.toString());
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, () async {
+      prefs = await SharedPreferences.getInstance();
+    });
+  }
+
+  void registrationOnChanged(value) {
+    checkIfAllIsValid();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            PersonaAvatar(personaImage: bloodbankImage,),
+            SizedBox(
+              height: 20,
+            ),
+            Column(
+              children: isLoading
+                  ? <Widget>[loadingComponent]
+                  : [
+                RegistrationTitle(),
+                SizedBox(
+                  height: 20,
+                ),
+                AnimatedContainer(duration: Duration(seconds: 10),),
+                RegistrationField(
+                  onChanged: registrationOnChanged,
+                  controllerName: nameController,
+                  registrationLabel: 'Name of Blood Bank',
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                RegistrationField(
+                  onChanged: registrationOnChanged,
+                  controllerName: cityController,
+                  registrationLabel: 'City',
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                DharmaButton(
+                  onPressed: buttonEnabled ? bloodbankSignup : null,
+                  titleOfButton: 'Register in the Blockchain',
+                ),
+              ],
+            ),
+            SizedBox(
+              child: (signatureBloodBank != "")
+                  ? HandwrittenSignature(handwrittingStyle:
+              bloodbankHandwritting,
+                signaturePersona: signatureBloodBank,)
+                  : Text(''),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -14,18 +14,17 @@ class HematologistSignUpScreen extends StatefulWidget {
       _HematologistSignUpScreenState();
 }
 
-//TODO: Me ensinar o que eh essa signature de string vazia na linha 146 >>
-// isso vai virar o component signature_animation
-
-
 class _HematologistSignUpScreenState extends State<HematologistSignUpScreen> {
+  SharedPreferences prefs;
+
   TextEditingController nameController = TextEditingController();
   bool isHematologist = false;
   TextEditingController cityController = TextEditingController();
+
   String signatureHematologist = "";
   bool buttonEnabled = false;
   bool isLoading = false;
-  SharedPreferences prefs;
+
   Widget loadingComponent = Center(child: CircularProgressIndicator());
 
   void checkIfAllIsValid() {
