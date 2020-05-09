@@ -7,12 +7,9 @@ import 'package:http/http.dart' as http;
 import 'package:hex/hex.dart';
 import 'package:dplasma/constants.dart';
 
-
 class EthereumUtils {
   static String abiPath = "assets/contracts/abi.json";
-  static Web3Client client = Web3Client( apiUrl,
-      http.Client());
-
+  static Web3Client client = Web3Client(apiUrl, http.Client());
 
   static Future<DeployedContract> generateContract() {
     Completer<DeployedContract> completer = Completer();
@@ -48,6 +45,26 @@ class EthereumUtils {
     return completer.future;
   }
 
+  static Future<List> getInformationFromContract(
+      privateKey, action, arguments) async {
+    DeployedContract contract = await generateContract();
+    ContractFunction function = contract.function(action);
+    Credentials credentials = getCredentials(privateKey);
+    List information = await client.call(
+        sender: await credentials.extractAddress(),
+        contract: contract,
+        function: function,
+        params: arguments);
+    return information;
+  }
+
+  static Future<EthereumAddress> getPublicKey(pvteKey) async {
+    EthereumAddress pubKey =
+        await EthereumUtils.getCredentials(pvteKey).extractAddress();
+
+    return pubKey;
+  }
+
   //// You can create Credentials from private keys
 //Credentials fromHex = EthPrivateKey.fromHex(pvteKeyHematologist);
 
@@ -76,4 +93,3 @@ class EthereumUtils {
 //     return obj;
 //  }
 }
-
