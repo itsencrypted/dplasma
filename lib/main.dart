@@ -2,9 +2,10 @@ import 'package:dplasma/components/animations.dart';
 import 'package:dplasma/screens/action_bloodbank_screen.dart';
 import 'package:dplasma/screens/action_doctor_screen.dart';
 import 'package:dplasma/screens/action_donor_screen.dart';
+import 'package:dplasma/screens/action_nyuhospital_screen.dart';
 import 'package:dplasma/screens/action_patient_screen.dart';
 import 'package:dplasma/screens/action_hematologist_screen.dart';
-import 'package:dplasma/screens/action_hospital_screen.dart';
+import 'package:dplasma/screens/action_mtsinaihospital_screen.dart';
 import 'package:dplasma/screens/login_bloodbank_screen.dart';
 import 'package:dplasma/screens/login_doctor_screen.dart';
 import 'package:dplasma/screens/login_donor_screen.dart';
@@ -27,11 +28,14 @@ class DPlasma extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp (
-      initialRoute: WelcomeScreen.id,
+//      initialRoute: WelcomeScreen.id,
       // initialRoute: AnimationsExamples.id,
 //       initialRoute: MapBloodBanksScreen.id,
       // initialRoute: HematologistSignUpScreen.id,
 //      initialRoute: BloodBankActionScreen.id,
+//      initialRoute: DoctorActionScreen.id,
+//    initialRoute: HospitalActionScreen.id,
+      initialRoute: MtSinaiHospitalActionScreen.id,
       debugShowCheckedModeBanner: false,
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
@@ -49,7 +53,8 @@ class DPlasma extends StatelessWidget {
         HematologistLoginScreen.id: (context) => HematologistLoginScreen(),
         DonorActionScreen.id: (context) => DonorActionScreen(),
         PatientActionScreen.id: (context) => PatientActionScreen(),
-        HospitalActionScreen.id: (context) => HospitalActionScreen(),
+        MtSinaiHospitalActionScreen.id: (context) => MtSinaiHospitalActionScreen(),
+        NYUHospitalActionScreen.id: (context) => NYUHospitalActionScreen(),
         BloodBankActionScreen.id: (context) => BloodBankActionScreen(),
         DoctorActionScreen.id: (context) => DoctorActionScreen(),
         MapBloodBanksScreen.id: (context) => MapBloodBanksScreen(),
