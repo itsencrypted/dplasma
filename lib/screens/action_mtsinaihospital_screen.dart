@@ -1,4 +1,5 @@
 import 'package:dplasma/constants.dart';
+import 'package:dplasma/screens/login_hematologist_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:dplasma/models/registration_form.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,7 +25,7 @@ State<MtSinaiHospitalActionScreen> {
               PersonaActionAvatar(
                 personaImage: ('assets/images/mtsinaihospital.jpg'),
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pushReplacementNamed(context, HematologistLoginScreen.id);
                 },
               ),
               SizedBox(

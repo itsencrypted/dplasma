@@ -1,4 +1,5 @@
 import 'package:dplasma/constants.dart';
+import 'package:dplasma/screens/login_hematologist_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:dplasma/models/registration_form.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,7 +24,9 @@ class _NYUHospitalActionScreenState extends State<NYUHospitalActionScreen> {
           children: <Widget>[
             PersonaActionAvatar(
               personaImage: ('assets/images/nyuhospital.jpg'),
-              onPressed: (){Navigator.pop(context);},
+              onPressed: (){
+                Navigator.pushReplacementNamed(context, HematologistLoginScreen.id);
+                },
             ),
             SizedBox(
               height: 20,

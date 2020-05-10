@@ -15,5 +15,9 @@ class _HematologistActionScreenState extends State<HematologistActionScreen> {
   }
 }
 
+//hematologist is redirected to login at Mt Sinai Hospital and NYU Hospital
+// and request plasma directly from there.
+
+
 
 //getPlasma(){}

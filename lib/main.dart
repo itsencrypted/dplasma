@@ -28,14 +28,13 @@ class DPlasma extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp (
-//      initialRoute: WelcomeScreen.id,
-      // initialRoute: AnimationsExamples.id,
-//       initialRoute: MapBloodBanksScreen.id,
-      // initialRoute: HematologistSignUpScreen.id,
-//      initialRoute: BloodBankActionScreen.id,
+      initialRoute: WelcomeScreen.id,
+//      initialRoute: HematologistLoginScreen.id,
 //      initialRoute: DoctorActionScreen.id,
-//    initialRoute: HospitalActionScreen.id,
-      initialRoute: MtSinaiHospitalActionScreen.id,
+//      initialRoute: BloodBankActionScreen.id,
+//      initialRoute: NYUHospitalActionScreen.id,
+//      initialRoute: MtSinaiHospitalActionScreen.id,
+//      initialRoute: DonorActionScreen.id,
       debugShowCheckedModeBanner: false,
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),

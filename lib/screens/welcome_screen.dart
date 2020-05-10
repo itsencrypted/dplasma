@@ -24,20 +24,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   AnimationController controller;
   Animation animation;
   String selectedItem = "select";
-  bool show = false;
-  String pvteKey = "";
-  String errorMsg = null;
+
 
   List<DropdownMenuItem<String>> types_dropdown = List();
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration.zero, () {
-      setState(() {
-        show = true;
-      });
-    });
 
     types_dropdown.clear();
 
@@ -73,17 +66,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     // controller.dispose();
   }
 
-  // void getInfo() async {
-
-  //   List info = await
-  //   EthereumUtils.getInformationFromContract(
-  //       pvteKeyDonor1,
-  //       "hematologists",
-  //       [address]
-  //   );
-
-  //   print(info[0]);
-  // }
 
   void selectRoleAction() {
     switch (selectedItem) {
@@ -127,12 +109,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       backgroundColor: Colors.black,
       body: Stack(
         children: <Widget>[
-//          AnimatedContainer(
-//            duration: Duration(seconds: 15),
-//            color: show ? kLightGreen : Colors.black,
-//            width: MediaQuery.of(context).size.width,
-//            height: MediaQuery.of(context).size.height,
-//          ),
           Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -177,10 +153,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           AlignmentDirectional.topStart // or Alignment.topLeft
                       ),
                 ),
-//                  Text(
-//                    'dPlasma',
-//                    style: TextStyle(fontSize: 60.0, color: Color(0xFFFFFFFF)),
-//                  ),
                 Text(
                   'Passive Immunity to Patients',
                   style: TextStyle(
@@ -192,24 +164,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 SizedBox(
                   height: 50,
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.only(left: 16.0, right: 16),
-                //   child: TextFormField(
-                //     onChanged: (value) {
-                //       pvteKey = value;
-                //     },
-                //     decoration: InputDecoration(
-                //         border: OutlineInputBorder(),
-                //         labelText: 'Private Key',
-                //         errorText: errorMsg),
-                //   ),
-                // ),
                 DropdownButton(
                   items: types_dropdown,
                   onChanged: (item) {
                     setState(() => selectedItem = item);
                   },
                   value: selectedItem,
+                  style: TextStyle(
+                    color: Colors.green.shade700,
+                  ),
                 ),
                 SizedBox(
                   height: 5,
@@ -234,7 +197,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     MaterialButton(
                       color: Colors.green.shade700,
                       onPressed: () {
-                        login(selectedItem, pvteKey, context, setErrorMessage);
+                        login(selectedItem, '', context, setErrorMessage);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
@@ -246,6 +209,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     ),
                   ],
                 ),
+                SizedBox(height: 20,)
               ]),
         ],
       ),
