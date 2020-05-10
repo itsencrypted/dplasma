@@ -28,8 +28,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   String pvteKey = "";
   String errorMsg = null;
 
-  final kLightBlueish = Color(0xFF33BBB5);
-  final kLightGreen = Color(0xFF95E08E);
   List<DropdownMenuItem<String>> types_dropdown = List();
 
   @override
@@ -126,31 +124,30 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Widget build(BuildContext context) {
     // getInfo();
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Stack(
         children: <Widget>[
-          AnimatedContainer(
-            duration: Duration(seconds: 15),
-            color: show ? kLightGreen : Colors.black,
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-          ),
+//          AnimatedContainer(
+//            duration: Duration(seconds: 15),
+//            color: show ? kLightGreen : Colors.black,
+//            width: MediaQuery.of(context).size.width,
+//            height: MediaQuery.of(context).size.height,
+//          ),
           Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
+                SizedBox(height: 30,),
                 Flexible(
-                  child: Hero(
-                    tag: 'logo',
-                    child: Container(
-                        child: Image.asset('assets/images/virus.png'),
-                        height: 280),
-                  ),
+                  child: Container(
+                      child: Image.asset('assets/images/virus.png'),
+                      height: 350),
                 ),
                 Image.asset(
                   'assets/images/logo-transparent.png',
-                  height: 280,
+                  height: 320,
                 ),
                 SizedBox(
-                  width: 350.0,
+                  width: 400.0,
                   child: ColorizeAnimatedTextKit(
                       onTap: () {
                         print("Tap Event");
@@ -172,6 +169,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         Colors.deepPurpleAccent,
                         Colors.blue,
                         Colors.yellow,
+                        Colors.amber,
                         Colors.red,
                       ],
                       textAlign: TextAlign.center,
@@ -220,13 +218,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     MaterialButton(
-                      color: Colors.black,
+                      color: Colors.lightGreenAccent,
                       onPressed: selectRoleAction,
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
                           'Sign Up',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: Colors.green.shade700),
                         ),
                       ),
                     ),
@@ -234,7 +232,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       width: 20,
                     ),
                     MaterialButton(
-                      color: Colors.black,
+                      color: Colors.green.shade700,
                       onPressed: () {
                         login(selectedItem, pvteKey, context, setErrorMessage);
                       },

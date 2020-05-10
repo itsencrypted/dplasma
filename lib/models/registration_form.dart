@@ -133,7 +133,7 @@ class PersonaAvatar extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(top: 50.0, left: 16),
           child: IconButton(
-            icon: Icon(Icons.arrow_back, size: 40, color: Colors.deepPurple,),
+            icon: Icon(Icons.arrow_back, size: 40, color: Colors.white,),
             onPressed: (){
               Navigator.pop(context);
             },
