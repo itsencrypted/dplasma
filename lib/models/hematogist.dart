@@ -24,6 +24,12 @@ class Hematologist {
     );
     return hematologistExample;
   }
+
+  static getPubKeyHematologist() async {
+    EthereumAddress pubKeyHematologist =
+        await EthereumUtils.getPublicKey(pvteKeyHematologist);
+    return pubKeyHematologist.hex;
+  }
 }
 
 //

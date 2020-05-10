@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:dplasma/constants.dart';
 import 'package:dplasma/models/login_model.dart';
 import 'package:dplasma/screens/login_donor_screen.dart';
@@ -110,12 +111,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   }
 
   void setErrorMessage(msg) {
-    setState(() {
-      errorMsg = msg;
-    });
+    AwesomeDialog(
+            context: context,
+            dialogType: DialogType.ERROR,
+            animType: AnimType.BOTTOMSLIDE,
+            tittle: 'Attention',
+            desc:msg,
+            btnCancelOnPress: () {},
+            btnOkOnPress: () {})
+        .show();
   }
 
- 
   @override
   Widget build(BuildContext context) {
     // getInfo();
@@ -188,18 +194,18 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 SizedBox(
                   height: 50,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 16.0, right: 16),
-                  child: TextFormField(
-                    onChanged: (value) {
-                      pvteKey = value;
-                    },
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Private Key',
-                        errorText: errorMsg),
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(left: 16.0, right: 16),
+                //   child: TextFormField(
+                //     onChanged: (value) {
+                //       pvteKey = value;
+                //     },
+                //     decoration: InputDecoration(
+                //         border: OutlineInputBorder(),
+                //         labelText: 'Private Key',
+                //         errorText: errorMsg),
+                //   ),
+                // ),
                 DropdownButton(
                   items: types_dropdown,
                   onChanged: (item) {
@@ -215,6 +221,20 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   children: <Widget>[
                     MaterialButton(
                       color: Colors.black,
+                      onPressed: selectRoleAction,
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          'Sign Up',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    MaterialButton(
+                      color: Colors.black,
                       onPressed: () {
                         login(selectedItem, pvteKey, context, setErrorMessage);
                       },
@@ -226,22 +246,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    MaterialButton(
-                      color: Colors.black,
-                      onPressed: selectRoleAction,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          'Sign Up',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ),
                   ],
-                )
+                ),
               ]),
         ],
       ),

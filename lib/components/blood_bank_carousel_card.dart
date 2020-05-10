@@ -1,4 +1,5 @@
 import 'package:dplasma/models/blood_bank.dart';
+import 'package:dplasma/screens/action_donor_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,7 +11,9 @@ class BloodBankCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushReplacementNamed(context, DonorActionScreen.id);
+      },
       child: Container(
         margin: EdgeInsets.all(10.0),
         width: 210,

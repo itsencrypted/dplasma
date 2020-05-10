@@ -1,9 +1,11 @@
+import 'package:dplasma/models/doctor.dart';
 import 'package:flutter/material.dart';
 import 'package:dplasma/components/dharma_button.dart';
 import 'package:dplasma/constants.dart';
 import 'package:dplasma/models/registration_form.dart';
 import 'package:dplasma/utils/ethereum_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:web3dart/credentials.dart';
 
 class DoctorSignUpScreen extends StatefulWidget {
   static const String id = 'doctorReg_screen';
@@ -41,7 +43,9 @@ class _DoctorSignUpScreenState extends State<DoctorSignUpScreen> {
       signatureDoctor = nameController.text;
       isLoading = true;
     });
+
     prefs.setString('role', 'Doctor');
+    prefs.setString('pubKey',await Doctor.getPubKeyDoctorNYU());
 
     var res = await EthereumUtils.sendInformationToContract(
         pvteKeyDoctorNYU.toString(), 'doctorSignup', [
