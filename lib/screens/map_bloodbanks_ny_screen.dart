@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dplasma/components/blood_bank_carousel_card.dart';
 import 'package:dplasma/models/blood_bank.dart';
+import 'package:dplasma/screens/action_donor_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -74,9 +75,7 @@ class _MapBloodBanksScreenState extends State<MapBloodBanksScreen> {
           markerId: MarkerId(bloodBank.geometry.toString()),
           icon: icon,
           position: bloodBank.geometry,
-          infoWindow: InfoWindow(
-            title: bloodBank.name
-          )));
+          infoWindow: InfoWindow(title: bloodBank.name)));
       i++;
     }
 
@@ -143,6 +142,7 @@ class _MapBloodBanksScreenState extends State<MapBloodBanksScreen> {
                 itemCount: bloodBanks.length,
                 itemBuilder: (context, index) {
                   BloodBank e = bloodBanks[index];
+
                   return BloodBankCard(
                     bloodBank: e,
                   );

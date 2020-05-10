@@ -1,9 +1,11 @@
 import 'package:dplasma/components/dharma_button.dart';
 import 'package:dplasma/constants.dart';
+import 'package:dplasma/models/hematogist.dart';
 import 'package:dplasma/models/registration_form.dart';
 import 'package:dplasma/utils/ethereum_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:web3dart/credentials.dart';
 
 
 class HematologistSignUpScreen extends StatefulWidget {
@@ -45,7 +47,9 @@ class _HematologistSignUpScreenState extends State<HematologistSignUpScreen> {
       signatureHematologist = nameController.text;
       isLoading = true;
     });
-    prefs.setString('role', 'hematologist');
+
+    prefs.setString('role', 'Hematologist');
+    prefs.setString('pubKey',await Hematologist.getPubKeyHematologist());
 
     var res = await EthereumUtils.sendInformationToContract(
         pvteKeyHematologist.toString(), 'hematologistSignup', [

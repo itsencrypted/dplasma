@@ -1,9 +1,11 @@
+import 'package:dplasma/models/blood_bank.dart';
 import 'package:flutter/material.dart';
 import 'package:dplasma/components/dharma_button.dart';
 import 'package:dplasma/constants.dart';
 import 'package:dplasma/models/registration_form.dart';
 import 'package:dplasma/utils/ethereum_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:web3dart/credentials.dart';
 
 class BloodBankSignUpScreen extends StatefulWidget {
   static const String id = 'bloodbankReg_screen';
@@ -13,7 +15,6 @@ class BloodBankSignUpScreen extends StatefulWidget {
 }
 
 class _BloodBankSignUpScreenState extends State<BloodBankSignUpScreen> {
-
   SharedPreferences prefs;
 
   TextEditingController nameController = TextEditingController();
@@ -43,6 +44,7 @@ class _BloodBankSignUpScreenState extends State<BloodBankSignUpScreen> {
       isLoading = true;
     });
     prefs.setString('role', 'Blood Bank');
+    prefs.setString('pubKey', await BloodBank.getPubKeyBloodBank());
 
     var res = await EthereumUtils.sendInformationToContract(
         pvteKeyBloodBank.toString(), 'bloodbankSignup', [
@@ -73,7 +75,9 @@ class _BloodBankSignUpScreenState extends State<BloodBankSignUpScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            PersonaAvatar(personaImage: bloodbankImage,),
+            PersonaAvatar(
+              personaImage: bloodbankImage,
+            ),
             SizedBox(
               height: 20,
             ),
@@ -81,38 +85,41 @@ class _BloodBankSignUpScreenState extends State<BloodBankSignUpScreen> {
               children: isLoading
                   ? <Widget>[loadingComponent]
                   : [
-                RegistrationTitle(),
-                SizedBox(
-                  height: 20,
-                ),
-                AnimatedContainer(duration: Duration(seconds: 10),),
-                RegistrationField(
-                  onChanged: registrationOnChanged,
-                  controllerName: nameController,
-                  registrationLabel: 'Name of Blood Bank',
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                RegistrationField(
-                  onChanged: registrationOnChanged,
-                  controllerName: cityController,
-                  registrationLabel: 'City',
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                DharmaButton(
-                  onPressed: buttonEnabled ? bloodbankSignup : null,
-                  titleOfButton: 'Register in the Blockchain',
-                ),
-              ],
+                      RegistrationTitle(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      AnimatedContainer(
+                        duration: Duration(seconds: 10),
+                      ),
+                      RegistrationField(
+                        onChanged: registrationOnChanged,
+                        controllerName: nameController,
+                        registrationLabel: 'Name of Blood Bank',
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      RegistrationField(
+                        onChanged: registrationOnChanged,
+                        controllerName: cityController,
+                        registrationLabel: 'City',
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      DharmaButton(
+                        onPressed: buttonEnabled ? bloodbankSignup : null,
+                        titleOfButton: 'Register in the Blockchain',
+                      ),
+                    ],
             ),
             SizedBox(
               child: (signatureBloodBank != "")
-                  ? HandwrittenSignature(handwrittingStyle:
-              bloodbankHandwritting,
-                signaturePersona: signatureBloodBank,)
+                  ? HandwrittenSignature(
+                      handwrittingStyle: bloodbankHandwritting,
+                      signaturePersona: signatureBloodBank,
+                    )
                   : Text(''),
             ),
           ],
