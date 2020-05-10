@@ -1,6 +1,7 @@
 import 'package:dplasma/components/dharma_button.dart';
 import 'package:dplasma/models/registration_form.dart';
 import 'package:flutter/material.dart';
+import 'package:dplasma/models/doctor.dart';
 
 class DoctorActionScreen extends StatefulWidget {
   static const String id = 'doctorAction_screen';
@@ -12,6 +13,10 @@ class DoctorActionScreen extends StatefulWidget {
 class _DoctorActionScreenState extends State<DoctorActionScreen> {
   @override
   Widget build(BuildContext context) {
+
+    //TODO: Bruno - Depends on who is logged in Return MtSinaiDoctorScreen or
+    // NYUDoctorScreen - take a look at models/doctor.dart
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
@@ -19,7 +24,7 @@ class _DoctorActionScreenState extends State<DoctorActionScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             PersonaActionAvatar(
-              personaImage: ('assets/images/doctorMtSinai.png'),
+              personaImage: ('assets/images/doctorNYU.jpg'),
               onPressed: (){Navigator.pop(context);},
             ),
             SizedBox(
@@ -33,13 +38,28 @@ class _DoctorActionScreenState extends State<DoctorActionScreen> {
                 Column(
                   children: <Widget>[
                     CircleAvatar(backgroundImage:
-                    AssetImage('assets/images/patient3.jpg'), radius:
+                    AssetImage('assets/images/patient1.jpg'), radius:
                     70,),
-                    Text( 'A - ', style: TextStyle
+                    Text( 'B - ', style: TextStyle
                       (fontWeight:
                     FontWeight
                         .bold, fontSize: 20, color: Colors.amber),),
-                    Text( 'Patient Mt Sinai', style: TextStyle
+                    Text( 'Patient NYU Hospital', style: TextStyle
+                      (fontWeight:
+                    FontWeight
+                        .bold, fontSize: 14, color: Colors.green),)
+                  ],
+                ),
+                Column(
+                  children: <Widget>[
+                    CircleAvatar(backgroundImage:
+                    AssetImage('assets/images/patient2.jpg'), radius:
+                    70,),
+                    Text( 'AB + ', style: TextStyle
+                      (fontWeight:
+                    FontWeight
+                        .bold, fontSize: 20, color: Colors.amber),),
+                    Text( 'Patient NYU Hospital', style: TextStyle
                       (fontWeight:
                     FontWeight
                         .bold, fontSize: 14, color: Colors.green),)
@@ -51,7 +71,7 @@ class _DoctorActionScreenState extends State<DoctorActionScreen> {
             Column(
               children: <Widget>[
                 Image.asset('assets/images/icon-patient.png', height: 200,),
-                Text( 'Request 300 ml Convalescent Plasma', style: TextStyle
+                Text( 'Request 2 x 300 ml Convalescent Plasma', style: TextStyle
                   (fontWeight: FontWeight
                     .bold, fontSize: 20, color: Colors.amber),),
               ],
@@ -62,5 +82,6 @@ class _DoctorActionScreenState extends State<DoctorActionScreen> {
         ),
       ),
     );
+
   }
 }
