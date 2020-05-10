@@ -1,7 +1,6 @@
 import 'package:dplasma/components/dharma_button.dart';
 import 'package:dplasma/models/registration_form.dart';
 import 'package:flutter/material.dart';
-import 'package:dplasma/models/doctor.dart';
 
 class DoctorActionScreen extends StatefulWidget {
   static const String id = 'doctorAction_screen';
@@ -82,6 +81,5 @@ class _DoctorActionScreenState extends State<DoctorActionScreen> {
         ),
       ),
     );
-
   }
 }

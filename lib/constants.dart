@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 const kDharma1 = Color(0xFF2536FF);
 const kDharma2 = Color(0xFFA323FE);
@@ -67,3 +68,15 @@ const String patient3Image = 'assets/images/patient3.jpg';
 
 //TODO: Remember to Switch keys for Hospitals, Doctors, Patients, Donors,
 // pvteKey Changes
+
+
+TextStyle hospitalFont = GoogleFonts.pressStart2p(
+textStyle: TextStyle(
+fontSize: 25.0,
+color: Colors.lightGreenAccent,),
+);
+TextStyle smallhospitalFont = GoogleFonts.pressStart2p(
+  textStyle: TextStyle(
+    fontSize: 12.0,
+    color: Colors.lightGreenAccent,),
+);
