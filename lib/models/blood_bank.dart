@@ -1,4 +1,6 @@
+import 'package:dplasma/constants.dart';
 import 'package:dplasma/models/hematogist.dart';
+import 'package:dplasma/utils/ethereum_utils.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart';
 import 'package:web3dart/crypto.dart';
@@ -19,6 +21,13 @@ class BloodBank {
     this.name,
     this.image
   });
+
+  static getPubKeyBloodBank() async {
+    EthereumAddress pubKeyBloodBank =
+        await EthereumUtils.getPublicKey(pvteKeyBloodBank);
+    return pubKeyBloodBank.hex;
+  }
+  
 }
 
 //TODO: 1. Stopped over here. Need to get more blood banks geolocations in NY

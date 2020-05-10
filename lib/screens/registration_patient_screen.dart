@@ -1,10 +1,12 @@
 import 'package:dplasma/models/blood_types.dart';
+import 'package:dplasma/models/patient.dart';
 import 'package:flutter/material.dart';
 import 'package:dplasma/components/dharma_button.dart';
 import 'package:dplasma/constants.dart';
 import 'package:dplasma/models/registration_form.dart';
 import 'package:dplasma/utils/ethereum_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:web3dart/credentials.dart';
 
 class PatientSignUpScreen extends StatefulWidget {
   static const String id = 'patientReg_screen';
@@ -50,7 +52,9 @@ class _PatientSignUpScreenState extends State<PatientSignUpScreen> {
       signaturePatient = nameController.text;
       isLoading = true;
     });
+    
     prefs.setString('role', 'Patient/Family Member');
+    prefs.setString('pubKey',await Patient.getPubKeyPatient1NYU());
 
     var res = await EthereumUtils.sendInformationToContract(
         pvteKeyPatient1NYU.toString(), 'patientSignup', [

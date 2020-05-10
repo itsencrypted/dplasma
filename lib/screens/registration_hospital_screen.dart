@@ -1,9 +1,11 @@
+import 'package:dplasma/models/hospitals.dart';
 import 'package:flutter/material.dart';
 import 'package:dplasma/components/dharma_button.dart';
 import 'package:dplasma/constants.dart';
 import 'package:dplasma/models/registration_form.dart';
 import 'package:dplasma/utils/ethereum_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:web3dart/credentials.dart';
 
 class HospitalSignUpScreen extends StatefulWidget {
   static const String id = 'hospitalReg_screen';
@@ -42,7 +44,9 @@ class _HospitalSignUpScreenState extends State<HospitalSignUpScreen> {
       signatureHospital = nameController.text;
       isLoading = true;
     });
+    
     prefs.setString('role', 'Hospital');
+    prefs.setString('pubKey',await Hospital.getPubKeyHospitalNYU());
 
     var res = await EthereumUtils.sendInformationToContract(
         pvteKeyHospitalNYU.toString(), 'hospitalSignup', [

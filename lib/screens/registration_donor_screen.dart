@@ -1,4 +1,6 @@
 import 'package:dplasma/models/blood_types.dart';
+import 'package:dplasma/models/donor.dart';
+import 'package:dplasma/models/patient.dart';
 import 'package:flutter/material.dart';
 import 'package:dplasma/components/dharma_button.dart';
 import 'package:dplasma/constants.dart';
@@ -6,6 +8,7 @@ import 'package:dplasma/models/registration_form.dart';
 import 'package:dplasma/utils/ethereum_utils.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:web3dart/credentials.dart';
 
 class DonorSignUpScreen extends StatefulWidget {
   static const String id = 'donorReg_screen';
@@ -59,7 +62,9 @@ class _DonorSignUpScreenState extends State<DonorSignUpScreen> {
       signatureDonor = nameController.text;
       isLoading = true;
     });
+
     prefs.setString('role', 'Donor');
+    prefs.setString('pubKey', await Donor.getPubKeyDonor1());
 
     var res = await EthereumUtils.sendInformationToContract(
         pvteKeyDonor1.toString(), 'donorSignup', [

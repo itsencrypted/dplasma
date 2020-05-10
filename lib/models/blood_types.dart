@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 enum BloodTypes {
   A_Plus,
   A_Minus,
