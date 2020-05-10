@@ -133,7 +133,7 @@ class PersonaAvatar extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(top: 50.0, left: 16),
           child: IconButton(
-            icon: Icon(Icons.arrow_back, size: 40, color: Colors.deepPurple,),
+            icon: Icon(Icons.arrow_back, size: 40, color: Colors.white,),
             onPressed: (){
               Navigator.pop(context);
             },
@@ -176,4 +176,38 @@ int convertDatetoTimeStamp(String date){
   DateTime formatedDate = DateTime.parse(acceptedDateFormat);
 
   return formatedDate.millisecondsSinceEpoch;
+}
+
+
+class PersonaActionAvatar extends StatelessWidget {
+  PersonaActionAvatar({this.personaImage, this.onPressed});
+
+  final String personaImage;
+  final Function onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        Container(
+          width: double.maxFinite,
+          height: 345,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              image: DecorationImage(
+                  image: AssetImage(personaImage),
+                  fit: BoxFit.cover)),
+        ),
+        Align(alignment: Alignment.topLeft,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 50.0, left: 16),
+            child: IconButton(
+              icon: Icon(Icons.arrow_back, size: 40, color: Colors
+                  .amber,),
+              onPressed: onPressed
+            ),
+          ),),
+      ],
+    );
+  }
 }

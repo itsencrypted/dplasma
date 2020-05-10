@@ -5,6 +5,8 @@ const kDharma2 = Color(0xFFA323FE);
 const kDharma3 = Color(0xFFFF1FCF);
 const kDharma4 = Color(0xFFFE763E);
 const kDharma5 = Color(0xFFFFA514);
+const kLightBlueish = Color(0xFF33BBB5);
+const kLightGreen = Color(0xFF95E08E);
 
 
 

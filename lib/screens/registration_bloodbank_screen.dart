@@ -5,7 +5,7 @@ import 'package:dplasma/constants.dart';
 import 'package:dplasma/models/registration_form.dart';
 import 'package:dplasma/utils/ethereum_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:web3dart/credentials.dart';
+
 
 class BloodBankSignUpScreen extends StatefulWidget {
   static const String id = 'bloodbankReg_screen';
