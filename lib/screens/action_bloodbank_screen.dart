@@ -21,6 +21,7 @@ class _BloodBankActionScreenState extends State<BloodBankActionScreen> {
   SharedPreferences prefs;
   String bloodType = "select";
   TextEditingController nameController = TextEditingController();
+  bool showInventories = false;
 
   String signatureBloodBank = "";
   bool buttonEnabled = false;
@@ -41,22 +42,29 @@ class _BloodBankActionScreenState extends State<BloodBankActionScreen> {
   }
 
   void bloodbankSignup() async {
-    setState(() {
-      signatureBloodBank = nameController.text;
-      isLoading = true;
-    });
-    prefs.setString('role', 'Blood Bank');
-    prefs.setString('pubKey', await BloodBank.getPubKeyBloodBank());
+//    setState(() {
+//      signatureBloodBank = nameController.text;
+//      isLoading = true;
+//    });
+//    prefs.setString('role', 'Blood Bank');
+//    prefs.setString('pubKey', await BloodBank.getPubKeyBloodBank());
+//
+//    var res = await EthereumUtils.sendInformationToContract(
+//        pvteKeyBloodBank.toString(), 'bloodbankSignup', [
+//      nameController.text,
+//    ]);
+//    print('txHash=' + res.toString());
+//    setState(() {
+//      isLoading = false;
+//    });
+  }
 
-    var res = await EthereumUtils.sendInformationToContract(
-        pvteKeyBloodBank.toString(), 'bloodbankSignup', [
-      nameController.text,
-    ]);
-    print('txHash=' + res.toString());
+  void displayBloodBankInventories() async {
     setState(() {
-      isLoading = false;
+      showInventories = true;
     });
   }
+
 
   @override
   void initState() {
@@ -138,7 +146,7 @@ class _BloodBankActionScreenState extends State<BloodBankActionScreen> {
                               await EthereumUtils.sendInformationToContract(
                                   prefs.getString('privateKey'),
                                   'donationHappened',
-                                  [1]);
+                                  [BigInt.from(1)]);
                           print(res);
                           showInfoMessage("Setting hasDonated to true!");
                         },
@@ -146,7 +154,12 @@ class _BloodBankActionScreenState extends State<BloodBankActionScreen> {
                             'Donation',
                       ),
                       SizedBox(height: 20),
-                      Row(
+                DharmaButton(
+                  onPressed: displayBloodBankInventories,
+                  titleOfButton: 'Publish Inventories in the Blockchain',
+                ),
+                      SizedBox(height: 20),
+                (showInventories) ? Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           Column(
@@ -196,9 +209,9 @@ class _BloodBankActionScreenState extends State<BloodBankActionScreen> {
                             ],
                           ),
                         ],
-                      ),
+                      ) : SizedBox(),
                       SizedBox(height: 20),
-                      Row(
+                (showInventories) ? Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           Column(
@@ -248,7 +261,7 @@ class _BloodBankActionScreenState extends State<BloodBankActionScreen> {
                             ],
                           ),
                         ],
-                      ),
+                      ) : SizedBox(),
                       SizedBox(height: 20),
                       Container(
                         width: double.maxFinite,
@@ -261,10 +274,7 @@ class _BloodBankActionScreenState extends State<BloodBankActionScreen> {
                                 fit: BoxFit.cover)),
                       ),
                       SizedBox(height: 20),
-                      DharmaButton(
-                        onPressed: buttonEnabled ? bloodbankSignup : null,
-                        titleOfButton: 'Publish Inventories in the Blockchain',
-                      ),
+
                     ],
             ),
             SizedBox(

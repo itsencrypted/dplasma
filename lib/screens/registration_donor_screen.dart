@@ -2,6 +2,7 @@ import 'package:dplasma/models/blood_types.dart';
 import 'package:dplasma/models/donor.dart';
 import 'package:dplasma/models/patient.dart';
 import 'package:dplasma/screens/login_donor_screen.dart';
+import 'package:dplasma/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:dplasma/components/dharma_button.dart';
 import 'package:dplasma/constants.dart';
@@ -90,9 +91,9 @@ class _DonorSignUpScreenState extends State<DonorSignUpScreen> {
       isMale,
     ]);
     print('txHash=' + res.toString());
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(Duration(seconds: 10), () {
       prefs.setString('privateKey', pvteKey.toString());
-      Navigator.pushReplacementNamed(context, DonorLoginScreen.id);
+      Navigator.pushReplacementNamed(context, WelcomeScreen.id);
     });
   }
 

@@ -10,6 +10,13 @@ class PatientLoginScreen extends StatefulWidget {
 class _PatientLoginScreenState extends State<PatientLoginScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      backgroundColor: Colors.amber,
+      body: Column(
+        children: <Widget>[
+      Text('Inactive Screen.', style: TextStyle(color: Colors.white),),
+        ],
+      ),
+    );
   }
 }

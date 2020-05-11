@@ -144,6 +144,7 @@ Future<dynamic> loginBlockchain(String privateKey, String role) async {
 }
 
 void whereToGo(context, pubKey, role) async {
+  pubKey = pubKey.toString().toLowerCase();
   if (role == "Donor") {
     if (pubKey == await Donor.getPubKeyDonor1()) {
       Navigator.pushReplacementNamed(context, DonorLoginScreen.id);
@@ -156,7 +157,7 @@ void whereToGo(context, pubKey, role) async {
     }
   } else if (role == "Hematologist") {
     if (pubKey == await Hematologist.getPubKeyHematologist()) {
-      Navigator.pushReplacementNamed(context, HematologistActionScreen.id);
+      Navigator.pushReplacementNamed(context, HematologistLoginScreen.id);
     }
   } else if (role == "Patient/Family Member") {
     if (pubKey == await Patient.getPubKeyPatient1NYU()) {

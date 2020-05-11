@@ -85,7 +85,10 @@ class _NYUHospitalActionScreenState extends State<NYUHospitalActionScreen> {
                         FlatButton(onPressed: (){},
                           child: Text('B+', style: smallhospitalFont,),
                           color: Colors.white54,),
-                        FlatButton(onPressed: (){},
+                        FlatButton(onPressed: (){
+                          //TODO: Execute this action
+//                          "yes, NY Blood Bank is sending you a B- plasma bag",
+                        },
                           child: Text('B-', style: smallhospitalFont,),
                           color: Colors.white54,),
                       ],
@@ -96,7 +99,10 @@ class _NYUHospitalActionScreenState extends State<NYUHospitalActionScreen> {
                   children: <Widget>[
                     ButtonBar(children: <Widget>[
                       SizedBox(width: 50,),
-                      FlatButton(onPressed: (){},
+                      FlatButton(onPressed: (){
+                        //TODO: Execute this action
+//                        'unfortunately, no AB+ plasma bags available today'
+                      },
                         child: Text('AB+', style: smallhospitalFont,),
                         color: Colors.white54,),
                       FlatButton(onPressed: (){},

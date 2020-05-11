@@ -2,6 +2,7 @@ import 'package:dplasma/components/dharma_button.dart';
 import 'package:dplasma/constants.dart';
 import 'package:dplasma/models/hematogist.dart';
 import 'package:dplasma/models/registration_form.dart';
+import 'package:dplasma/screens/welcome_screen.dart';
 import 'package:dplasma/utils/ethereum_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -58,8 +59,9 @@ class _HematologistSignUpScreenState extends State<HematologistSignUpScreen> {
       cityController.text,
     ]);
     print('txHash=' + res.toString());
-    setState(() {
-      isLoading = false;
+    Future.delayed(Duration(seconds: 13), () async {
+      prefs.setString('privateKey', pvteKeyHematologist);
+      Navigator.pushReplacementNamed(context, WelcomeScreen.id);
     });
   }
 
