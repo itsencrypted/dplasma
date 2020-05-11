@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:dplasma/constants.dart';
 import 'package:dplasma/models/login_model.dart';
 import 'package:dplasma/screens/login_donor_screen.dart';
+import 'package:dplasma/screens/login_generic.dart';
 import 'package:dplasma/screens/login_hematologist_screen.dart';
 import 'package:dplasma/screens/registration_bloodbank_screen.dart';
 import 'package:dplasma/screens/registration_doctor_screen.dart';
@@ -24,7 +25,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   AnimationController controller;
   Animation animation;
   String selectedItem = "select";
-
 
   List<DropdownMenuItem<String>> types_dropdown = List();
 
@@ -66,7 +66,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     // controller.dispose();
   }
 
-
   void selectRoleAction() {
     switch (selectedItem) {
       case "Donor":
@@ -96,7 +95,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             dialogType: DialogType.ERROR,
             animType: AnimType.BOTTOMSLIDE,
             tittle: 'Attention',
-            desc:msg,
+            desc: msg,
             btnCancelOnPress: () {},
             btnOkOnPress: () {})
         .show();
@@ -112,7 +111,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                SizedBox(height: 30,),
+                SizedBox(
+                  height: 30,
+                ),
                 Flexible(
                   child: Container(
                       child: Image.asset('assets/images/virus.png'),
@@ -197,7 +198,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     MaterialButton(
                       color: Colors.green.shade700,
                       onPressed: () {
-                        login(selectedItem, '', context, setErrorMessage);
+                        // login(selectedItem, '', context, setErrorMessage);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginGenericScreen(role: selectedItem,)));
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
@@ -209,7 +214,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     ),
                   ],
                 ),
-                SizedBox(height: 20,)
+                SizedBox(
+                  height: 20,
+                )
               ]),
         ],
       ),

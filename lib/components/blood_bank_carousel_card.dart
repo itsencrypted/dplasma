@@ -12,7 +12,12 @@ class BloodBankCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushReplacementNamed(context, DonorActionScreen.id);
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DonorActionScreen(
+                      image: bloodBank.image,
+                    )));
       },
       child: Container(
         margin: EdgeInsets.all(10.0),

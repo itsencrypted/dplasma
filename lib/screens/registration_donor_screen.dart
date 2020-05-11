@@ -1,6 +1,7 @@
 import 'package:dplasma/models/blood_types.dart';
 import 'package:dplasma/models/donor.dart';
 import 'package:dplasma/models/patient.dart';
+import 'package:dplasma/screens/login_donor_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:dplasma/components/dharma_button.dart';
 import 'package:dplasma/constants.dart';
@@ -23,8 +24,9 @@ class _DonorSignUpScreenState extends State<DonorSignUpScreen> {
   TextEditingController cityController = TextEditingController();
   String bloodType = "select";
   DateTime birthDate;
-  MaskedTextController birthdayController = MaskedTextController(mask: '00/00'
-      '/0000');
+  MaskedTextController birthdayController = MaskedTextController(
+      mask: '00/00'
+          '/0000');
   bool hasNotDonatedLastFourWeeks = false;
   bool serologicalTestIsPositive = false;
   bool pcrResultIsNegative = false;
@@ -37,16 +39,18 @@ class _DonorSignUpScreenState extends State<DonorSignUpScreen> {
 
   void checkIfAllIsValid() {
     print(bloodType);
-    print (birthDate);
+    print(birthDate);
     print(hasNotDonatedLastFourWeeks);
     print(serologicalTestIsPositive);
     print(pcrResultIsNegative);
     print(isMale);
-    if ( cityController.text.isEmpty ||
-        bloodType == 'select' || birthDate != null ||
-    hasNotDonatedLastFourWeeks == false || serologicalTestIsPositive == false ||
-    pcrResultIsNegative == false || isMale == false
-    ) {
+    if (cityController.text.isEmpty ||
+        bloodType == 'select' ||
+        birthDate != null ||
+        hasNotDonatedLastFourWeeks == false ||
+        serologicalTestIsPositive == false ||
+        pcrResultIsNegative == false ||
+        isMale == false) {
       setState(() {
         buttonEnabled = false;
       });
@@ -62,12 +66,21 @@ class _DonorSignUpScreenState extends State<DonorSignUpScreen> {
       signatureDonor = nameController.text;
       isLoading = true;
     });
-
+    String pvteKey = "";
     prefs.setString('role', 'Donor');
-    prefs.setString('pubKey', await Donor.getPubKeyDonor1());
+    if (bloodType == "0") {
+      prefs.setString('pubKey', await Donor.getPubKeyDonor2());
+      pvteKey = pvteKeyDonor2;
+    } else if (bloodType == "1") {
+      prefs.setString('pubKey', await Donor.getPubKeyDonor1());
+      pvteKey = pvteKeyDonor1;
+    } else if (bloodType == "2") {
+      prefs.setString('pubKey', await Donor.getPubKeyDonor3());
+      pvteKey = pvteKeyDonor3;
+    }
 
     var res = await EthereumUtils.sendInformationToContract(
-        pvteKeyDonor1.toString(), 'donorSignup', [
+        pvteKey, 'donorSignup', [
       cityController.text,
       BigInt.from(int.parse(bloodType)),
       BigInt.from(convertDatetoTimeStamp(birthdayController.text)),
@@ -77,8 +90,9 @@ class _DonorSignUpScreenState extends State<DonorSignUpScreen> {
       isMale,
     ]);
     print('txHash=' + res.toString());
-    setState(() {
-      isLoading = false;
+    Future.delayed(Duration(seconds: 2), () {
+      prefs.setString('privateKey', pvteKey.toString());
+      Navigator.pushReplacementNamed(context, DonorLoginScreen.id);
     });
   }
 
@@ -90,133 +104,143 @@ class _DonorSignUpScreenState extends State<DonorSignUpScreen> {
     });
   }
 
-  void registrationOnChanged(value){
+  void registrationOnChanged(value) {
     checkIfAllIsValid();
   }
 
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
-    body: SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          PersonaAvatar(personaImage: donor1Image,),
-          SizedBox(
-            height: 20,
-          ),
-          Column(
-            children: isLoading
-                ? <Widget>[loadingComponent]
-                : [
-              RegistrationTitle(),
-              SizedBox(
-                height: 20,
-              ),
-              AnimatedContainer(duration: Duration(seconds: 10),),
-              RegistrationField(
-                onChanged: registrationOnChanged,
-                controllerName: nameController,
-                registrationLabel: 'Name or Anonymously Register',
-              ),
-              SizedBox(height: 20,),
-              RegistrationField(
-                onChanged: registrationOnChanged,
-                controllerName: cityController,
-                registrationLabel: 'City you are now ready to donate',
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              SelectBloodType(
-                onChanged: (selectedBloodType){
-                  setState(() {
-                    bloodType = selectedBloodType;
-                  });
-                  checkIfAllIsValid();
-                },
-                selectedBloodType: bloodType,
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              RegistrationField(
-                onChanged: registrationOnChanged,
-                controllerName: birthdayController,
-                registrationLabel: 'Birthday: in MM/DD/YYYY format',
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              BoolQuestion(
-                isParameterTrue: hasNotDonatedLastFourWeeks,
-                question: 'Confirm that you HAVEN\'T DONATED in the past 4 '
-                    'weeks?',
-                onChanged: (value){
-                  setState(() {
-                    hasNotDonatedLastFourWeeks = value;
-                  });
-                  checkIfAllIsValid();
-                },
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              BoolQuestion(
-                isParameterTrue: serologicalTestIsPositive,
-                question: 'Confirm that you tested positive on the '
-                    'Serological Test for Covid-19',
-                onChanged: (value){
-                  setState(() {
-                    serologicalTestIsPositive = value;
-                  });
-                  checkIfAllIsValid();
-                },
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              BoolQuestion(
-                isParameterTrue: pcrResultIsNegative,
-                question: 'Confirm that you tested negative on the PCR Test '
-                    'for Covid-19',
-                onChanged: (value){
-                  setState(() {
-                    pcrResultIsNegative = value;
-                  });
-                  checkIfAllIsValid();
-                },
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              BoolQuestion(
-                isParameterTrue: isMale,
-                question: 'Confirm Male Gender',
-                onChanged: (value){
-                  setState(() {
-                    isMale = value;
-                  });
-                  checkIfAllIsValid();
-                },
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              DharmaButton(
-                onPressed: buttonEnabled ? donorSignup : null,
-                titleOfButton: 'Register in the Blockchain',
-              ),
-            ],
-          ),
-          SizedBox(
-            child: (signatureDonor != "")
-                ? HandwrittenSignature(handwrittingStyle:
-            donorHandwritting, signaturePersona: signatureDonor,)
-                : Text(''),
-          ),
-        ],
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            PersonaAvatar(
+              personaImage: donor1Image,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Column(
+              children: isLoading
+                  ? <Widget>[loadingComponent]
+                  : [
+                      RegistrationTitle(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      AnimatedContainer(
+                        duration: Duration(seconds: 10),
+                      ),
+                      RegistrationField(
+                        onChanged: registrationOnChanged,
+                        controllerName: nameController,
+                        registrationLabel: 'Name or Anonymously Register',
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      RegistrationField(
+                        onChanged: registrationOnChanged,
+                        controllerName: cityController,
+                        registrationLabel: 'City you are now ready to donate',
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      SelectBloodType(
+                        onChanged: (selectedBloodType) {
+                          setState(() {
+                            bloodType = selectedBloodType;
+                          });
+                          checkIfAllIsValid();
+                        },
+                        selectedBloodType: bloodType,
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      RegistrationField(
+                        onChanged: registrationOnChanged,
+                        controllerName: birthdayController,
+                        registrationLabel: 'Birthday: in MM/DD/YYYY format',
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      BoolQuestion(
+                        isParameterTrue: hasNotDonatedLastFourWeeks,
+                        question:
+                            'Confirm that you HAVEN\'T DONATED in the past 4 '
+                            'weeks?',
+                        onChanged: (value) {
+                          setState(() {
+                            hasNotDonatedLastFourWeeks = value;
+                          });
+                          checkIfAllIsValid();
+                        },
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      BoolQuestion(
+                        isParameterTrue: serologicalTestIsPositive,
+                        question: 'Confirm that you tested positive on the '
+                            'Serological Test for Covid-19',
+                        onChanged: (value) {
+                          setState(() {
+                            serologicalTestIsPositive = value;
+                          });
+                          checkIfAllIsValid();
+                        },
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      BoolQuestion(
+                        isParameterTrue: pcrResultIsNegative,
+                        question:
+                            'Confirm that you tested negative on the PCR Test '
+                            'for Covid-19',
+                        onChanged: (value) {
+                          setState(() {
+                            pcrResultIsNegative = value;
+                          });
+                          checkIfAllIsValid();
+                        },
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      BoolQuestion(
+                        isParameterTrue: isMale,
+                        question: 'Confirm Male Gender',
+                        onChanged: (value) {
+                          setState(() {
+                            isMale = value;
+                          });
+                          checkIfAllIsValid();
+                        },
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      DharmaButton(
+                        onPressed: buttonEnabled ? donorSignup : null,
+                        titleOfButton: 'Register in the Blockchain',
+                      ),
+                    ],
+            ),
+            SizedBox(
+              child: (signatureDonor != "")
+                  ? HandwrittenSignature(
+                      handwrittingStyle: donorHandwritting,
+                      signaturePersona: signatureDonor,
+                    )
+                  : Text(''),
+            ),
+          ],
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 }

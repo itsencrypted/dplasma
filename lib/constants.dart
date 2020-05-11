@@ -44,7 +44,7 @@ const apiUrl = "https://rinkeby.infura.io/v3/1fc5af390b99412f864b52fd4ca975ea";
 //const apiUrl =     "https://rinkeby.infura"
 //".io/v3/6c35b5b0fa1b4010be4f0db6e60002cb";
 
-const String dPlasmaContractAddress = "0x4a136D27150dEe1610E2D748c765c909f6e96E0a";
+const String dPlasmaContractAddress = "0x38b2E1ee825692a74335203B84902d87283eaF39";
 
 //const String dPlasmaContractAddress = "0xE837840eF6Fd42119c8D5C6eED5EA160e8804EB4";
 //  static String contractAddress = "0xD1CC1D57695E394cC48c8Dba4891160E66bAcB85";
