@@ -92,11 +92,11 @@ class _HematologistLoginScreenState extends State<HematologistLoginScreen>
             ),
 
             DharmaButton(titleOfButton: 'Login at Mt Sinai Hospital',
-            onPressed: (){Navigator.pushReplacementNamed(context,
+            onPressed: (){Navigator.pushNamed(context,
           MtSinaiHospitalActionScreen.id);}),
             SizedBox(height: 10,),
             DharmaButton(titleOfButton: 'Login at NYU Hospital',
-              onPressed: (){Navigator.pushReplacementNamed(context, NYUHospitalActionScreen.id);}
+              onPressed: (){Navigator.pushNamed(context, NYUHospitalActionScreen.id);}
             ),
 
 //          SizedBox(

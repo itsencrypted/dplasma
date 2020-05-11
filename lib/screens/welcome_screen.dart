@@ -199,10 +199,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       color: Colors.green.shade700,
                       onPressed: () {
                         // login(selectedItem, '', context, setErrorMessage);
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginGenericScreen(role: selectedItem,)));
+                        if (selectedItem != "select") {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginGenericScreen(
+                                        role: selectedItem,
+                                      )));
+                        }
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
