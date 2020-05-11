@@ -53,8 +53,8 @@ In this link you will get access to donors that could potentially donate their p
 The repository was built in python, and you will need to set up a Python 3 environment to run the shell scripts
 The rewards for doing that is that you will be able to access some precious data from the FHIR Database in the US.
 
+<img src="assets/images/AppMainScreen.png" width="300px"/>
 
-![](assets/images/AppMainScreen.png)
 
 
 
