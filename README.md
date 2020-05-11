@@ -1,4 +1,4 @@
-# dplasma
+# dPlasma
 
 P2P is the new "Plasma to Patients"!! Come and get to know our DDD (Decentralized Data Donors) model at the DPKI that we BUIDL. Okok...Decentralized Public Key Infrastructure...and yes... BUIDL is the new HODL. 
 
