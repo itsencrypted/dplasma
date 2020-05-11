@@ -47,33 +47,33 @@ class _LoginGenericScreenState extends State<LoginGenericScreen> {
       print('here');
       print(pubKey);
       print(Patient.getPubKeyPatient1NYU());
-      if (pubKey == await Patient.getPubKeyPatient1NYU()) {
+      if (pubKey.toLowerCase() == await Patient.getPubKeyPatient1NYU()) {
         return pvteKeyPatient1NYU;
-      } else if (pubKey == await Patient.getPubKeyPatient2NYU()) {
+      } else if (pubKey.toLowerCase() == await Patient.getPubKeyPatient2NYU()) {
         return pvteKeyPatient2NYU;
-      } else if (pubKey == await Patient.getPubKeyPatient3MtSinai()) {
+      } else if (pubKey.toLowerCase() == await Patient.getPubKeyPatient3MtSinai()) {
         return pvteKeyPatient3MtSinai;
       } else {
         return "";
       }
     } else if (widget.role == "Blood Bank") {
-      if (pubKey == await BloodBank.getPubKeyBloodBank()) {
+      if (pubKey.toLowerCase() == await BloodBank.getPubKeyBloodBank()) {
         return pvteKeyBloodBank;
       } else {
         return "";
       }
     } else if (widget.role == "Hospital") {
-      if (pubKey == await Hospital.getPubKeyHospitalMtSinai()) {
+      if (pubKey.toLowerCase() == await Hospital.getPubKeyHospitalMtSinai()) {
         return pvteKeyHospitalMtSinai;
-      } else if (pubKey == await Hospital.getPubKeyHospitalNYU()) {
+      } else if (pubKey.toLowerCase() == await Hospital.getPubKeyHospitalNYU()) {
         return pvteKeyHospitalNYU;
       } else {
         return "";
       }
     } else if (widget.role == "Doctor") {
-      if (pubKey == await Doctor.getPubKeyDoctorMtSinai()) {
+      if (pubKey.toLowerCase() == await Doctor.getPubKeyDoctorMtSinai()) {
         return pvteKeyDoctorMtSinai;
-      } else if (pubKey == await Doctor.getPubKeyDoctorNYU()) {
+      } else if (pubKey.toLowerCase() == await Doctor.getPubKeyDoctorNYU()) {
         return pvteKeyDoctorNYU;
       } else {
         return "";
@@ -105,9 +105,9 @@ class _LoginGenericScreenState extends State<LoginGenericScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Future.delayed(Duration.zero, () async {
-    //   print(await Patient.getPubKeyPatient1NYU());
-    // });
+    Future.delayed(Duration.zero, () async {
+      print(await Hospital.getPubKeyHospitalMtSinai());
+    });
     return Scaffold(
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
@@ -139,8 +139,6 @@ class _LoginGenericScreenState extends State<LoginGenericScreen> {
                         (isLoading)
                             ? CircularProgressIndicator()
                             : TextFormField(
-                                initialValue:
-                                    '0xeb31af3f23c147090ded4d263af369c3b979f4cd',
                                 decoration: InputDecoration(
                                     border: OutlineInputBorder(),
                                     prefixIcon: Icon(Icons.lock_outline)),
@@ -165,6 +163,7 @@ class _LoginGenericScreenState extends State<LoginGenericScreen> {
                                   res.toString(), widget.role);
                               
                               if(isItOnBlockchain['isValid']) {
+                                prefs.setString('privateKey', res);
                                 whereToGo(context, pubKey, widget.role);
                               } else {
                                 showErrorMessage("Local key valid, but not found on blockchain");

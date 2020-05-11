@@ -1,4 +1,5 @@
 import 'package:dplasma/models/hospitals.dart';
+import 'package:dplasma/models/login_model.dart';
 import 'package:flutter/material.dart';
 import 'package:dplasma/components/dharma_button.dart';
 import 'package:dplasma/constants.dart';
@@ -64,8 +65,9 @@ class _HospitalSignUpScreenState extends State<HospitalSignUpScreen> {
       cityController.text,
     ]);
     print('txHash=' + res.toString());
-    setState(() {
-      isLoading = false;
+    Future.delayed(Duration(seconds: 2), () async {
+      prefs.setString('privateKey', pvteKey);
+      whereToGo(context, prefs.getString('pubKey'), 'Hospital');
     });
   }
 

@@ -146,11 +146,11 @@ Future<dynamic> loginBlockchain(String privateKey, String role) async {
 void whereToGo(context, pubKey, role) async {
   if (role == "Donor") {
     if (pubKey == await Donor.getPubKeyDonor1()) {
-      Navigator.pushReplacementNamed(context, DonorActionScreen.id);
+      Navigator.pushReplacementNamed(context, DonorLoginScreen.id);
     } else if (pubKey == await Donor.getPubKeyDonor2()) {
-      Navigator.pushReplacementNamed(context, DonorActionScreen.id);
+      Navigator.pushReplacementNamed(context, DonorLoginScreen.id);
     } else if (pubKey == await Donor.getPubKeyDonor3()) {
-      Navigator.pushReplacementNamed(context, DonorActionScreen.id);
+      Navigator.pushReplacementNamed(context, DonorLoginScreen.id);
     } else {
       print('not found');
     }
