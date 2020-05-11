@@ -1,6 +1,7 @@
 import 'package:dplasma/components/animations.dart';
 import 'package:dplasma/screens/action_bloodbank_screen.dart';
-import 'package:dplasma/screens/action_doctor_screen.dart';
+import 'package:dplasma/screens/action_mtsinai_doctor_screen.dart';
+import 'package:dplasma/screens/action_nyu_doctor_screen.dart';
 import 'package:dplasma/screens/action_donor_screen.dart';
 import 'package:dplasma/screens/action_nyuhospital_screen.dart';
 import 'package:dplasma/screens/action_patient_screen.dart';
@@ -29,16 +30,18 @@ class DPlasma extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp (
 //      initialRoute: WelcomeScreen.id,
-      // initialRoute: AnimationsExamples.id,
-//       initialRoute: MapBloodBanksScreen.id,
-      // initialRoute: HematologistSignUpScreen.id,
+//      initialRoute: HematologistLoginScreen.id,
 //      initialRoute: BloodBankActionScreen.id,
-//      initialRoute: DoctorActionScreen.id,
-//    initialRoute: HospitalActionScreen.id,
-      initialRoute: MtSinaiHospitalActionScreen.id,
+//      initialRoute: BloodBankLoginScreen.id,
+//      initialRoute: NYUHospitalActionScreen.id,
+//      initialRoute: MtSinaiHospitalActionScreen.id,
+//      initialRoute: MtSinaiDoctorActionScreen.id,
+//      initialRoute: DonorActionScreen.id,
+//      initialRoute: DonorLoginScreen.id,
       debugShowCheckedModeBanner: false,
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
+//        LoginScreen.id: (context) => LoginScreen(),
         DonorSignUpScreen.id: (context) => DonorSignUpScreen(),
         PatientSignUpScreen.id: (context) => PatientSignUpScreen(),
         HospitalSignUpScreen.id: (context) => HospitalSignUpScreen(),
@@ -53,10 +56,15 @@ class DPlasma extends StatelessWidget {
         HematologistLoginScreen.id: (context) => HematologistLoginScreen(),
         DonorActionScreen.id: (context) => DonorActionScreen(),
         PatientActionScreen.id: (context) => PatientActionScreen(),
+
         MtSinaiHospitalActionScreen.id: (context) => MtSinaiHospitalActionScreen(),
         NYUHospitalActionScreen.id: (context) => NYUHospitalActionScreen(),
+
         BloodBankActionScreen.id: (context) => BloodBankActionScreen(),
-        DoctorActionScreen.id: (context) => DoctorActionScreen(),
+
+        NYUDoctorActionScreen.id: (context) => NYUDoctorActionScreen(),
+        MtSinaiDoctorActionScreen.id: (context) => MtSinaiDoctorActionScreen(),
+
         MapBloodBanksScreen.id: (context) => MapBloodBanksScreen(),
         HematologistActionScreen.id: (context) => HematologistActionScreen(),
         AnimationsExamples.id: (context) => AnimationsExamples(),
