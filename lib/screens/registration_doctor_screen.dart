@@ -45,11 +45,21 @@ class _DoctorSignUpScreenState extends State<DoctorSignUpScreen> {
     });
 
     prefs.setString('role', 'Doctor');
-    prefs.setString('pubKey',await Doctor.getPubKeyDoctorNYU());
+    String pvteKey = "";
+    if (hospitalController.text.toLowerCase() == "new york") {
+      prefs.setString('pubKey', await Doctor.getPubKeyDoctorNYU());
+      pvteKey = pvteKeyDoctorNYU;
+    } else if (hospitalController.text.toLowerCase() == "mt sinai") {
+      prefs.setString('pubKey', await Doctor.getPubKeyDoctorMtSinai());
+      pvteKey = pvteKeyDoctorMtSinai;
+    } else {
+      prefs.setString('pubKey', await Doctor.getPubKeyDoctorNYU());
+      pvteKey = pvteKeyDoctorNYU;
+    }
 
-    var res = await EthereumUtils.sendInformationToContract(
-        pvteKeyDoctorNYU.toString(), 'doctorSignup', [
-          hospitalController.text,
+    var res =
+        await EthereumUtils.sendInformationToContract(pvteKey, 'doctorSignup', [
+      hospitalController.text,
       nameController.text,
     ]);
     print('txHash=' + res.toString());
@@ -70,14 +80,15 @@ class _DoctorSignUpScreenState extends State<DoctorSignUpScreen> {
     checkIfAllIsValid();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            PersonaAvatar(personaImage: doctorNYUImage,),
+            PersonaAvatar(
+              personaImage: doctorNYUImage,
+            ),
             SizedBox(
               height: 20,
             ),
@@ -85,38 +96,41 @@ class _DoctorSignUpScreenState extends State<DoctorSignUpScreen> {
               children: isLoading
                   ? <Widget>[loadingComponent]
                   : [
-                RegistrationTitle(),
-                SizedBox(
-                  height: 20,
-                ),
-                AnimatedContainer(duration: Duration(seconds: 10),),
-                RegistrationField(
-                  onChanged: registrationOnChanged,
-                  controllerName: nameController,
-                  registrationLabel: 'Doctor Name',
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                RegistrationField(
-                  onChanged: registrationOnChanged,
-                  controllerName: hospitalController,
-                  registrationLabel: 'What Hospital do you work for?',
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                DharmaButton(
-                  onPressed: buttonEnabled ? doctorSignup : null,
-                  titleOfButton: 'Register in the Blockchain',
-                ),
-              ],
+                      RegistrationTitle(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      AnimatedContainer(
+                        duration: Duration(seconds: 10),
+                      ),
+                      RegistrationField(
+                        onChanged: registrationOnChanged,
+                        controllerName: nameController,
+                        registrationLabel: 'Doctor Name',
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      RegistrationField(
+                        onChanged: registrationOnChanged,
+                        controllerName: hospitalController,
+                        registrationLabel: 'What Hospital do you work for?',
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      DharmaButton(
+                        onPressed: buttonEnabled ? doctorSignup : null,
+                        titleOfButton: 'Register in the Blockchain',
+                      ),
+                    ],
             ),
             SizedBox(
               child: (signatureDoctor != "")
-                  ? HandwrittenSignature(handwrittingStyle:
-              doctorHandwritting,
-                signaturePersona: signatureDoctor,)
+                  ? HandwrittenSignature(
+                      handwrittingStyle: doctorHandwritting,
+                      signaturePersona: signatureDoctor,
+                    )
                   : Text(''),
             ),
           ],

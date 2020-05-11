@@ -46,10 +46,20 @@ class _HospitalSignUpScreenState extends State<HospitalSignUpScreen> {
     });
     
     prefs.setString('role', 'Hospital');
-    prefs.setString('pubKey',await Hospital.getPubKeyHospitalNYU());
+    String pvteKey = "";
+    if (cityController.text.toLowerCase() == "new york") {
+      prefs.setString('pubKey', await Hospital.getPubKeyHospitalNYU());
+      pvteKey = pvteKeyHospitalNYU;
+    } else if (cityController.text.toLowerCase() == "mt sinai") {
+      prefs.setString('pubKey', await Hospital.getPubKeyHospitalMtSinai());
+      pvteKey = pvteKeyHospitalMtSinai;
+    } else {
+      prefs.setString('pubKey', await Hospital.getPubKeyHospitalNYU());
+      pvteKey = pvteKeyHospitalNYU;
+    }
 
     var res = await EthereumUtils.sendInformationToContract(
-        pvteKeyHospitalNYU.toString(), 'hospitalSignup', [
+        pvteKey, 'hospitalSignup', [
       nameController.text,
       cityController.text,
     ]);

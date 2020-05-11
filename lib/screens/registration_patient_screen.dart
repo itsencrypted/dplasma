@@ -54,10 +54,21 @@ class _PatientSignUpScreenState extends State<PatientSignUpScreen> {
     });
     
     prefs.setString('role', 'Patient/Family Member');
-    prefs.setString('pubKey',await Patient.getPubKeyPatient1NYU());
+    String pvteKey = "";
+    //B-
+    if (bloodType == "3") {
+      prefs.setString('pubKey', await Patient.getPubKeyPatient1NYU());
+      pvteKey = pvteKeyPatient1NYU;
+    } else if (bloodType == "4") {
+      prefs.setString('pubKey', await Patient.getPubKeyPatient2NYU());
+      pvteKey = pvteKeyPatient2NYU;
+    } else if (bloodType == "1") {
+      prefs.setString('pubKey', await Patient.getPubKeyPatient3MtSinai());
+      pvteKey = pvteKeyPatient3MtSinai;
+    }
 
     var res = await EthereumUtils.sendInformationToContract(
-        pvteKeyPatient1NYU.toString(), 'patientSignup', [
+        pvteKey.toString(), 'patientSignup', [
       nameController.text,
       hospitalController.text,
       cityController.text,

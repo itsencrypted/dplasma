@@ -10,6 +10,7 @@ import 'package:dplasma/screens/action_mtsinaihospital_screen.dart';
 import 'package:dplasma/screens/login_bloodbank_screen.dart';
 import 'package:dplasma/screens/login_doctor_screen.dart';
 import 'package:dplasma/screens/login_donor_screen.dart';
+import 'package:dplasma/screens/login_generic.dart';
 import 'package:dplasma/screens/login_patient_screen.dart';
 import 'package:dplasma/screens/login_hematologist_screen.dart';
 import 'package:dplasma/screens/login_hospital_screen.dart';
@@ -29,7 +30,7 @@ class DPlasma extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp (
-//      initialRoute: WelcomeScreen.id,
+     initialRoute: WelcomeScreen.id,
 //      initialRoute: HematologistLoginScreen.id,
 //      initialRoute: BloodBankActionScreen.id,
 //      initialRoute: BloodBankLoginScreen.id,
@@ -42,6 +43,7 @@ class DPlasma extends StatelessWidget {
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
 //        LoginScreen.id: (context) => LoginScreen(),
+      LoginGenericScreen.id: (context) => LoginGenericScreen(),
         DonorSignUpScreen.id: (context) => DonorSignUpScreen(),
         PatientSignUpScreen.id: (context) => PatientSignUpScreen(),
         HospitalSignUpScreen.id: (context) => HospitalSignUpScreen(),
