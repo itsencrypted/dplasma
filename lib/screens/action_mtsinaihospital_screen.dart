@@ -97,6 +97,8 @@ State<MtSinaiHospitalActionScreen> {
                       )
                     ],
                   ),
+
+                  //button only visible to hematologist.
                   Text('Press to Request', textAlign: TextAlign.left,
                       style: GoogleFonts
                           .pressStart2p(

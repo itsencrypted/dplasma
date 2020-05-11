@@ -1,12 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:dplasma/components/blood_bank_carousel_card.dart';
 import 'package:dplasma/models/blood_bank.dart';
-import 'package:dplasma/screens/action_donor_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -123,46 +121,54 @@ class _MapBloodBanksScreenState extends State<MapBloodBanksScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(
-      children: <Widget>[
-        GoogleMap(
-          mapType: MapType.normal,
-          initialCameraPosition: _kGooglePlex,
-          onMapCreated: (GoogleMapController controller) {
-            _controller.complete(controller);
-          },
-          markers: markers,
-        ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            width: double.maxFinite,
-            margin: EdgeInsets.only(bottom: 0),
-            height: 340,
-            child: PageView.builder(
-                itemCount: bloodBanks.length,
-                itemBuilder: (context, index) {
-                  BloodBank e = bloodBanks[index];
+          children: <Widget>[
+            GoogleMap(
+              mapType: MapType.normal,
+              initialCameraPosition: _kGooglePlex,
+              onMapCreated: (GoogleMapController controller) {
+                _controller.complete(controller);
+              },
+              markers: markers,
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 50, left: 30),
+                child: IconButton(icon: Icon(Icons.arrow_back), iconSize: 40,
+                    color: Colors.black, onPressed: (){Navigator.pop(context);},),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                width: double.maxFinite,
+                margin: EdgeInsets.only(bottom: 0),
+                height: 340,
+                child: PageView.builder(
+                    itemCount: bloodBanks.length,
+                    itemBuilder: (context, index) {
+                      BloodBank e = bloodBanks[index];
 
-                  return BloodBankCard(
-                    bloodBank: e,
-                  );
-                },
-                onPageChanged: (page) async {
-                  BloodBank e = bloodBanks[page];
-                  final GoogleMapController controller =
+                      return BloodBankCard(
+                        bloodBank: e,
+                      );
+                    },
+                    onPageChanged: (page) async {
+                      BloodBank e = bloodBanks[page];
+                      final GoogleMapController controller =
                       await _controller.future;
-                  controller.animateCamera(
-                    CameraUpdate.newCameraPosition(
-                        CameraPosition(target: e.geometry, zoom: 14)),
-                  );
-                },
-                controller: PageController(
-                  viewportFraction: 0.6,
-                  initialPage: 0,
-                )),
-          ),
-        )
-      ],
-    ));
+                      controller.animateCamera(
+                        CameraUpdate.newCameraPosition(
+                            CameraPosition(target: e.geometry, zoom: 14)),
+                      );
+                    },
+                    controller: PageController(
+                      viewportFraction: 0.6,
+                      initialPage: 0,
+                    )),
+              ),
+            )
+          ],
+        ));
   }
 }
