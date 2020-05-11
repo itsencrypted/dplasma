@@ -8,6 +8,7 @@ dPlasma is a way to connect Patients and Donors globally. With this App, anyone,
 
 <img src="assets/images/logo-transparent.png" width="150px"/>
 
+<a href="slideshow_presentation/dPlasma.pdf" target="_blank">Slideshow presentation</a>
 
 ### Getting Started
 
