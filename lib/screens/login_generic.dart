@@ -28,17 +28,17 @@ class _LoginGenericScreenState extends State<LoginGenericScreen> {
 
   Future<String> frontEndKeyValidation() async {
     if (widget.role == "Donor") {
-      if (pubKey == await Donor.getPubKeyDonor1()) {
+      if (pubKey.toLowerCase() == await Donor.getPubKeyDonor1()) {
         return pvteKeyDonor1;
-      } else if (pubKey == await Donor.getPubKeyDonor2()) {
+      } else if (pubKey.toLowerCase() == await Donor.getPubKeyDonor2()) {
         return pvteKeyDonor2;
-      } else if (pubKey == await Donor.getPubKeyDonor3()) {
+      } else if (pubKey.toLowerCase() == await Donor.getPubKeyDonor3()) {
         return pvteKeyDonor3;
       } else {
         return "";
       }
     } else if (widget.role == "Hematologist") {
-      if (pubKey == await Hematologist.getPubKeyHematologist()) {
+      if (pubKey.toLowerCase() == await Hematologist.getPubKeyHematologist()) {
         return pvteKeyHematologist;
       } else {
         return "";

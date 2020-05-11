@@ -1,4 +1,5 @@
 import 'package:dplasma/models/doctor.dart';
+import 'package:dplasma/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:dplasma/components/dharma_button.dart';
 import 'package:dplasma/constants.dart';
@@ -46,10 +47,10 @@ class _DoctorSignUpScreenState extends State<DoctorSignUpScreen> {
 
     prefs.setString('role', 'Doctor');
     String pvteKey = "";
-    if (hospitalController.text.toLowerCase() == "new york") {
+    if (hospitalController.text.toLowerCase() == "nyu hospital") {
       prefs.setString('pubKey', await Doctor.getPubKeyDoctorNYU());
       pvteKey = pvteKeyDoctorNYU;
-    } else if (hospitalController.text.toLowerCase() == "mt sinai") {
+    } else if (hospitalController.text.toLowerCase() == "mt sinai hospital") {
       prefs.setString('pubKey', await Doctor.getPubKeyDoctorMtSinai());
       pvteKey = pvteKeyDoctorMtSinai;
     } else {
@@ -63,8 +64,9 @@ class _DoctorSignUpScreenState extends State<DoctorSignUpScreen> {
       nameController.text,
     ]);
     print('txHash=' + res.toString());
-    setState(() {
-      isLoading = false;
+    Future.delayed(Duration(seconds: 10), () {
+      prefs.setString('privateKey', pvteKey.toString());
+      Navigator.pushReplacementNamed(context, WelcomeScreen.id);
     });
   }
 

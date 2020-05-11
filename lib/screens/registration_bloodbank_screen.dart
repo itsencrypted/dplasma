@@ -1,4 +1,5 @@
 import 'package:dplasma/models/blood_bank.dart';
+import 'package:dplasma/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:dplasma/components/dharma_button.dart';
 import 'package:dplasma/constants.dart';
@@ -52,8 +53,9 @@ class _BloodBankSignUpScreenState extends State<BloodBankSignUpScreen> {
       cityController.text,
     ]);
     print('txHash=' + res.toString());
-    setState(() {
-      isLoading = false;
+    Future.delayed(Duration(seconds: 10), () {
+      prefs.setString('privateKey', pvteKeyBloodBank.toString());
+      Navigator.pushReplacementNamed(context, WelcomeScreen.id);
     });
   }
 

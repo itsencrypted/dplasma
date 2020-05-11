@@ -1,5 +1,6 @@
 import 'package:dplasma/models/blood_types.dart';
 import 'package:dplasma/models/patient.dart';
+import 'package:dplasma/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:dplasma/components/dharma_button.dart';
 import 'package:dplasma/constants.dart';
@@ -76,9 +77,11 @@ class _PatientSignUpScreenState extends State<PatientSignUpScreen> {
       isINDregistered,
     ]);
     print('txHash=' + res.toString());
-    setState(() {
-      isLoading = false;
+    Future.delayed(Duration(seconds: 10), () {
+      prefs.setString('privateKey', pvteKey.toString());
+      Navigator.pushReplacementNamed(context, WelcomeScreen.id);
     });
+
   }
 
   @override
