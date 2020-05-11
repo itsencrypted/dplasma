@@ -147,7 +147,7 @@ class _MtSinaiHospitalActionScreenState
                                       "Yes, NY Blood Bank is sending you a A- plasma bag");
                                 } else {
                                   showInfoMessage(
-                                      "Sorry, you're not a Hematologist");
+                                      "User not Hematologist");
                                 }
                               },
                               child: Text(

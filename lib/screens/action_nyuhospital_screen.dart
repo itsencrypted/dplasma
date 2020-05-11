@@ -171,7 +171,7 @@ class _NYUHospitalActionScreenState extends State<NYUHospitalActionScreen> {
                                   "Yes, NY Blood Bank is sending you a B- plasma bag");
                             } else {
                               showInfoMessage(
-                                  "Sorry, you're not a Hematologist");
+                                  "User not Hematologist");
                             }
                           },
                           child: Text(
@@ -201,7 +201,7 @@ class _NYUHospitalActionScreenState extends State<NYUHospitalActionScreen> {
                                   "Sorry, unfortunately there's no AB+ plasma bag available");
                             } else {
                               showInfoMessage(
-                                  "Sorry, you're not a Hematologist");
+                                  "User not Hematologist");
                             }
                           },
                           child: Text(
