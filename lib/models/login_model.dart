@@ -145,6 +145,8 @@ Future<dynamic> loginBlockchain(String privateKey, String role) async {
 
 void whereToGo(context, pubKey, role) async {
   pubKey = pubKey.toString().toLowerCase();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setString('role', role);
   if (role == "Donor") {
     if (pubKey == await Donor.getPubKeyDonor1()) {
       Navigator.pushReplacementNamed(context, DonorLoginScreen.id);

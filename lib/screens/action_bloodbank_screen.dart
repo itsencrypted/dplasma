@@ -65,7 +65,6 @@ class _BloodBankActionScreenState extends State<BloodBankActionScreen> {
     });
   }
 
-
   @override
   void initState() {
     super.initState();
@@ -80,21 +79,39 @@ class _BloodBankActionScreenState extends State<BloodBankActionScreen> {
 
   void showInfoMessage(msg) {
     AwesomeDialog(
-        context: context,
-        dialogType: DialogType.SUCCES,
-        animType: AnimType.BOTTOMSLIDE,
-        tittle: 'Great',
-        desc: msg,
-        btnCancelOnPress: () {
-          Navigator.pop(context);
-        },
-        btnOkOnPress: () {
-          Navigator.pop(context);
-        }).show();
+            context: context,
+            dialogType: DialogType.SUCCES,
+            animType: AnimType.SCALE,
+            tittle: 'Great',
+            // desc: msg,
+            body: Container(
+              height: 270,
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    width: double.maxFinite,
+                    height: 240,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(
+                              'assets/images/icon-check.png',
+                            ),
+                            fit: BoxFit.cover)),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(msg)
+                ],
+              ),
+            ),
+            btnOkOnPress: () {})
+        .show();
   }
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
@@ -103,7 +120,7 @@ class _BloodBankActionScreenState extends State<BloodBankActionScreen> {
             PersonaActionAvatar(
               personaImage: ('assets/images/icon-donate.png'),
               onPressed: () {
-                Navigator.pushNamed(context, BloodBankLoginScreen.id);
+                Navigator.pop(context);
               },
             ),
             SizedBox(
@@ -142,126 +159,146 @@ class _BloodBankActionScreenState extends State<BloodBankActionScreen> {
                       ),
                       DharmaButton(
                         onPressed: () async {
-                          var res =
-                              await EthereumUtils.sendInformationToContract(
+                          setState(() {
+                            isLoading = true;
+                          });
+                          var blood =
+                              await EthereumUtils.getInformationFromContract(
                                   prefs.getString('privateKey'),
-                                  'donationHappened',
-                                  [BigInt.from(1)]);
-                          print(res);
+                                  "donationCount", []);
+                          var bloodCount = int.parse(blood[0].toString());
+                          var i = 1;
+                          while (i < bloodCount) {
+                            var res =
+                                await EthereumUtils.sendInformationToContract(
+                                    prefs.getString('privateKey'),
+                                    'donationHappened',
+                                    [BigInt.from(i)]);
+                            print(res);
+                            await Future.delayed(Duration(seconds: 3));
+                            i++;
+                          }
+                          setState(() {
+                            isLoading = false;
+                          });
                           showInfoMessage("Setting hasDonated to true!");
                         },
                         titleOfButton: 'Collect '
                             'Donation',
                       ),
                       SizedBox(height: 20),
-                DharmaButton(
-                  onPressed: displayBloodBankInventories,
-                  titleOfButton: 'Publish Inventories in the Blockchain',
-                ),
+                      DharmaButton(
+                        onPressed: displayBloodBankInventories,
+                        titleOfButton: 'Publish Inventories in the Blockchain',
+                      ),
                       SizedBox(height: 20),
-                (showInventories) ? Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Column(
-                            children: <Widget>[
-                              CircleAvatar(
-                                backgroundImage: AssetImage(
-                                    'assets/images/plasmabag_donor1_A-.jpg'),
-                                radius: 70,
-                              ),
-                              Text(
-                                'A -',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                    color: Colors.amber),
-                              ),
-                              Text(
-                                'available: 1',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                    color: Colors.green),
-                              )
-                            ],
-                          ),
-                          Column(
-                            children: <Widget>[
-                              CircleAvatar(
-                                backgroundImage: AssetImage(
-                                    'assets/images/plasmabag_donor2_A+.png'),
-                                radius: 70,
-                              ),
-                              Text(
-                                'A +',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                    color: Colors.amber),
-                              ),
-                              Text(
-                                'available: 1',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                    color: Colors.green),
-                              )
-                            ],
-                          ),
-                        ],
-                      ) : SizedBox(),
+                      (showInventories)
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                Column(
+                                  children: <Widget>[
+                                    CircleAvatar(
+                                      backgroundImage: AssetImage(
+                                          'assets/images/plasmabag_donor1_A-.jpg'),
+                                      radius: 70,
+                                    ),
+                                    Text(
+                                      'A -',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                          color: Colors.amber),
+                                    ),
+                                    Text(
+                                      'available: 1',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                          color: Colors.green),
+                                    )
+                                  ],
+                                ),
+                                Column(
+                                  children: <Widget>[
+                                    CircleAvatar(
+                                      backgroundImage: AssetImage(
+                                          'assets/images/plasmabag_donor2_A+.png'),
+                                      radius: 70,
+                                    ),
+                                    Text(
+                                      'A +',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                          color: Colors.amber),
+                                    ),
+                                    Text(
+                                      'available: 1',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                          color: Colors.green),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            )
+                          : SizedBox(),
                       SizedBox(height: 20),
-                (showInventories) ? Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Column(
-                            children: <Widget>[
-                              CircleAvatar(
-                                backgroundImage: AssetImage(
-                                    'assets/images/plasmabag_donor3_B+.png'),
-                                radius: 70,
-                              ),
-                              Text(
-                                'B +',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                    color: Colors.amber),
-                              ),
-                              Text(
-                                'available: 1',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                    color: Colors.green),
-                              )
-                            ],
-                          ),
-                          Column(
-                            children: <Widget>[
-                              CircleAvatar(
-                                backgroundImage:
-                                    AssetImage('assets/images/plasmabagAB.png'),
-                                radius: 70,
-                              ),
-                              Text(
-                                'AB +',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                    color: Colors.amber),
-                              ),
-                              Text(
-                                'available: empty',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                    color: Colors.red),
-                              )
-                            ],
-                          ),
-                        ],
-                      ) : SizedBox(),
+                      (showInventories)
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                Column(
+                                  children: <Widget>[
+                                    CircleAvatar(
+                                      backgroundImage: AssetImage(
+                                          'assets/images/plasmabag_donor3_B+.png'),
+                                      radius: 70,
+                                    ),
+                                    Text(
+                                      'B +',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                          color: Colors.amber),
+                                    ),
+                                    Text(
+                                      'available: 1',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                          color: Colors.green),
+                                    )
+                                  ],
+                                ),
+                                Column(
+                                  children: <Widget>[
+                                    CircleAvatar(
+                                      backgroundImage: AssetImage(
+                                          'assets/images/plasmabagAB.png'),
+                                      radius: 70,
+                                    ),
+                                    Text(
+                                      'AB +',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                          color: Colors.amber),
+                                    ),
+                                    Text(
+                                      'available: empty',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                          color: Colors.red),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            )
+                          : SizedBox(),
                       SizedBox(height: 20),
                       Container(
                         width: double.maxFinite,
@@ -274,7 +311,6 @@ class _BloodBankActionScreenState extends State<BloodBankActionScreen> {
                                 fit: BoxFit.cover)),
                       ),
                       SizedBox(height: 20),
-
                     ],
             ),
             SizedBox(
