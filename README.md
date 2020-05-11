@@ -4,6 +4,9 @@ P2P is the new "Plasma to Patients"!! Come and get to know our DDD (Decentralize
 
 dPlasma is a way to connect Patients and Donors globally. With this App, anyone, anywhere in the world, would be able to donate blood components at Blood Centers, regardless of their nationality. We are all one planet, and one planet in pandemic mode should be able to access a network of global donors. We travel a lot, we change our locations very often, we should be able to help patients in need in any city of the world.
 
+![](assets/images/logo-transparent.png)
+
+
 ### Getting Started
 
 This project was build with Flutter.
@@ -48,6 +51,8 @@ In this link you will get access to donors that could potentially donate their p
 The repository was built in python, and you will need to set up a Python 3 environment to run the shell scripts
 The rewards for doing that is that you will be able to access some precious data from the FHIR Database in the US.
 
+
+![](assets/images/AppMainScreen.png)
 
 
 
