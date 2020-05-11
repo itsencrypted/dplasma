@@ -4,9 +4,13 @@ P2P is the new "Plasma to Patients"!! Come and get to know our DDD (Decentralize
 
 dPlasma is a way to connect Patients and Donors globally. With this App, anyone, anywhere in the world, would be able to donate blood components at Blood Centers, regardless of their nationality. We are all one planet, and one planet in pandemic mode should be able to access a network of global donors. We travel a lot, we change our locations very often, we should be able to help patients in need in any city of the world.
 
-<a href="https://youtu.be/thO48i_sP-M" target="_blank">Demonstration Video</a>
+<a href="https://youtu.be/thO48i_sP-M" target="_blank">Project Presentation Video</a>
+
+
 
 <img src="assets/images/logo-transparent.png" width="150px"/>
+
+<a href="https://youtu.be/-aXqMmSfMZ8?t=550" target="_blank">App Demo</a>
 
 <a href="slideshow_presentation/dPlasma.pdf" target="_blank">Slideshow presentation</a>
 
